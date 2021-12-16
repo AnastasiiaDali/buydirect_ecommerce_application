@@ -9,6 +9,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import SideBar from 'components/SideBar/SideBar';
 import Search from 'components/Search/Search';
 import IconButton from '@material-ui/core/IconButton';
+import { useQuery } from 'react-query';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   flexGrow: 1,
@@ -27,7 +28,10 @@ const StyledTypography = styled(Typography)({
   fontFamily: 'Montserrat'
 });
 
-export default function Header({ products }) {
+export default function Header() {
+  const { data: products } = useQuery('products', () =>
+    fetch('https://fakestoreapi.com/products').then((res) => res.json())
+  );
   return (
     <StyledAppBar position="static">
       <Toolbar style={{ justifyContent: 'space-between', zIndex: 10 }}>

@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import { White, TextDarkGrey } from 'theme';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles(() => ({
   input: {
@@ -55,50 +56,57 @@ export default function Search({ products }) {
     setFilteredProducts([]);
   };
 
+  const handleClickAway = () => {
+    setAnchorEl(false);
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
   return (
     <>
-      <IconButton onClick={handleClick}>
-        <SearchOutlinedIcon />
-      </IconButton>
-      <Popper
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        placement="bottom-end"
-        className={classes.popper}>
-        <div className={classes.autocomplete}>
-          <TextField
-            className={classes.input}
-            label="Search input"
-            margin="normal"
-            variant="outlined"
-            onChange={handleSearch}
-            value={inputValue}
-            InputProps={{
-              endAdornment: inputValue !== '' && (
-                <IconButton>
-                  <CloseOutlinedIcon onClick={handleClearInput} />
-                </IconButton>
-              )
-            }}
-          />
-          {console.log(typeof filteredProducts)}
-          <Box className={classes.searchResults}>
-            {filteredProducts === [] ? (
-              <Box>empty search</Box>
-            ) : (
-              filteredProducts.map((product) => (
-                <Box key={product.id} p={2}>
-                  {product.title}
-                </Box>
-              ))
-            )}
-          </Box>
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <div style={{ display: 'initial' }}>
+          <IconButton onClick={handleClick}>
+            <SearchOutlinedIcon />
+          </IconButton>
+          <Popper
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            placement="bottom-end"
+            className={classes.popper}>
+            <div className={classes.autocomplete}>
+              <TextField
+                className={classes.input}
+                label="Search input"
+                margin="normal"
+                variant="outlined"
+                onChange={handleSearch}
+                value={inputValue}
+                InputProps={{
+                  endAdornment: inputValue !== '' && (
+                    <IconButton>
+                      <CloseOutlinedIcon onClick={handleClearInput} />
+                    </IconButton>
+                  )
+                }}
+              />
+              <Box className={classes.searchResults}>
+                {filteredProducts === [] ? (
+                  <Box>empty search</Box>
+                ) : (
+                  filteredProducts.map((product) => (
+                    <Box key={product.id} p={2}>
+                      {product.title}
+                    </Box>
+                  ))
+                )}
+              </Box>
+            </div>
+          </Popper>
         </div>
-      </Popper>
+      </ClickAwayListener>
     </>
   );
 }

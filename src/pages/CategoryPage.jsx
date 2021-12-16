@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Typography, Box, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import { PrimaryBlue } from 'theme';
+import { useQuery } from 'react-query';
+import Breads from 'components/Breads/Breads';
 
 const useStyles = makeStyles(() => ({
   categoryContainer: {
@@ -50,36 +52,21 @@ const useStyles = makeStyles(() => ({
 }));
 
 function CategoryPage() {
-  let location = useLocation();
-  console.log('location', location);
-  const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
+  let { pathname } = useLocation();
   const classes = useStyles();
 
-  useEffect(() => {
-    if (location.pathname) {
-      fetch(`https://fakestoreapi.com/products${location.pathname}`)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setItems(result);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
-    }
-  }, [location]);
-  console.log(items, error, isLoaded);
+  const { data: products, isLoading } = useQuery(['category', pathname], () =>
+    fetch(`https://fakestoreapi.com/products${pathname}`).then((res) => res.json())
+  );
+
+  if (isLoading) return 'Loading...';
+
   return (
     <>
       <Box className={classes.categoryContainer}>
-        {items.map((item) => {
-          const { id, title, price, image } = item;
+        <Breads category={pathname.replace('/category/', '')} />
+        {products.map((product) => {
+          const { id, title, price, image } = product;
           return (
             <Box key={id} className={classes.productContainer}>
               <Box

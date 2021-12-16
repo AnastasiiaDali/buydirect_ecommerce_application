@@ -64,7 +64,6 @@ export default function SideBar() {
   const classes = useStyles();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  console.log('isSidebarOpen', isSidebarOpen);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -72,6 +71,7 @@ export default function SideBar() {
 
   const handleRouting = (url) => {
     navigate(`/category/${url}`);
+    setIsSidebarOpen(false);
   };
   const handleClickAway = () => {
     setIsSidebarOpen(false);
@@ -100,7 +100,7 @@ export default function SideBar() {
                 <ListItemText inset primary="WOMEN'S CLOTHING" className={classes.itemBorder} />
               </ListItem>
               <ListItem button onClick={() => handleRouting('jewelery')}>
-                <ListItemText inset primary="JEWELLERY" className={classes.itemBorder} />
+                <ListItemText inset primary="JEWELERY" className={classes.itemBorder} />
               </ListItem>
             </List>
           </div>

@@ -87,6 +87,11 @@ const theme = createTheme({
         fill: 'red'
       }
     },
+    MuiDivider: {
+      flexItem: {
+        height: 1
+      }
+    },
     MuiButton: {
       root: {
         textAlign: 'center',

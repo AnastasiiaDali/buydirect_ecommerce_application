@@ -6,6 +6,7 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import IconButton from '@material-ui/core/IconButton';
 import { PrimaryBlue } from 'theme';
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 const useStyles = makeStyles(() => ({
   imageProduct: {
@@ -50,9 +51,11 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-export default function TopSellers({ items }) {
+export default function TopSellers() {
   const classes = useStyles();
-
+  const { data: items } = useQuery('products', () =>
+    fetch('https://fakestoreapi.com/products').then((res) => res.json())
+  );
   return (
     <Box>
       <Typography variant="h1" paragraph align="center" style={{ fontFamily: 'Montserrat' }}>
