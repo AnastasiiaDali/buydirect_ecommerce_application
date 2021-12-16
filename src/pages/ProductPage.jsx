@@ -1,16 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Typography, Box, Button, Grid, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Typography, Box, Button, FormControlLabel, Checkbox } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
-import PrimaryBlue from 'theme';
+import Breads from 'components/Breads/Breads';
+import TopSellers from 'components/TopSellers/TopSellers';
+import { useQuery } from 'react-query';
+import Counter from 'components/Counter/Counter';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(() => ({
   productContainer: {
-    margin: '60px auto auto 0',
-    backgroundColor: PrimaryBlue,
-    width: '100vw'
+    margin: '76px auto 40px 0',
+    flexDirection: 'column',
+    display: 'flex',
+    gridGap: '24px',
+    px: 6,
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   imageProduct: {
     objectFit: 'scale-down',
@@ -20,83 +29,61 @@ const useStyles = makeStyles(() => ({
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto'
+  },
+  addBtnFav: {
+    display: 'flex',
+    gap: '20px'
   }
 }));
 
-function ProductPage() {
-  let location = useLocation();
-  console.log('location', location);
-  const [product, setProduct] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+export default function ProductPage() {
+  const { pathname } = useLocation();
   const classes = useStyles();
 
-  useEffect(() => {
-    if (location.pathname) {
-      fetch(`https://fakestoreapi.com${location.pathname}`)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setProduct(result);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
-    }
-  }, [location]);
-  console.log(product, error, isLoaded);
+  const { data: product, isLoading } = useQuery(['product', pathname], () =>
+    fetch(`https://fakestoreapi.com${pathname}`).then((res) => res.json())
+  );
+
+  if (isLoading) return 'Loading...';
 
   return (
     <>
-      <Grid
-        container
-        spacing={5}
-        className={classes.productContainer}
-        direction="column"
-        alignContent="center"
-        alignItems="center">
-        <Grid item xs={12}>
-          <Box
-            className={classes.imageProduct}
-            style={{
-              background: `url(${product.image}) center center/contain no-repeat`
-            }}
+      <Box className={classes.productContainer}>
+        <Breads category={product.category} title={product.title} />
+        <div
+          className={classes.imageProduct}
+          style={{
+            background: `url(${product.image}) center center/contain no-repeat`
+          }}
+        />
+        <Typography variant="h3">{product.title}</Typography>
+
+        <Divider flexItem />
+
+        <Typography variant="h4">${product.price}</Typography>
+
+        <Divider flexItem />
+
+        <Typography variant="body1">{product.description}</Typography>
+
+        <Divider flexItem />
+
+        <Counter />
+
+        <Divider flexItem />
+
+        <div className={classes.addBtnFav}>
+          <Button variant="contained">ADD TO CART</Button>
+          <FormControlLabel
+            control={
+              <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
+            }
+            label="Add to Favorite"
           />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography className={classes.titleProduct} variant="h3">
-            {product.title}
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="h4">${product.price}</Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body1">{product.description}</Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <div>
-            <Button variant="contained">ADD TO CART</Button>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="medium"
-                  color="secondary"
-                  icon={<FavoriteBorder />}
-                  checkedIcon={<Favorite color="primary" />}
-                  name="checked"
-                />
-              }
-              label="Add to Favorite"
-            />
-          </div>
-        </Grid>
-      </Grid>
+        </div>
+      </Box>
+
+      <TopSellers />
     </>
   );
 }
-
-export default ProductPage;
