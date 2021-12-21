@@ -10,6 +10,8 @@ import SideBar from 'components/SideBar/SideBar';
 import Search from 'components/Search/Search';
 import IconButton from '@material-ui/core/IconButton';
 import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
+import Badge from '@material-ui/core/Badge';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   flexGrow: 1,
@@ -32,6 +34,9 @@ export default function Header() {
   const { data: products } = useQuery('products', () =>
     fetch('https://fakestoreapi.com/products').then((res) => res.json())
   );
+
+  const cartTotalQuantity = useSelector((state) => state.cart.cartTotalQuantity);
+
   return (
     <StyledAppBar position="static">
       <Toolbar style={{ justifyContent: 'space-between', zIndex: 10 }}>
@@ -41,8 +46,10 @@ export default function Header() {
         </StyledTypography>
         <Box>
           {products && <Search products={products} />}
-          <IconButton>
-            <ShoppingCartOutlinedIcon />
+          <IconButton component={Link} to="/cart">
+            <Badge badgeContent={cartTotalQuantity} color="primary">
+              <ShoppingCartOutlinedIcon />
+            </Badge>
           </IconButton>
         </Box>
       </Toolbar>

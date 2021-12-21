@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { BlackBg, White } from 'theme';
 import { featuredCatData } from 'data/featuredCatData';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   imageBn: {
@@ -31,13 +32,14 @@ const useStyles = makeStyles(() => ({
 export default function FeaturedCat() {
   const classes = useStyles();
   return featuredCatData.map((category, index) => (
-    <Box
-      className={classes.imageBn}
-      key={index}
-      style={{ background: `url(${category.image}) center center/cover no-repeat` }}>
-      <Typography variant="h1" p={3} align="center" className={classes.bannerText}>
-        {category.title}
-      </Typography>
-    </Box>
+    <Link key={index} to="">
+      <Box
+        className={classes.imageBn}
+        style={{ background: `url(${category.image}) center center/cover no-repeat` }}>
+        <Typography variant="h1" p={3} align="center" className={classes.bannerText}>
+          {category.title}
+        </Typography>
+      </Box>
+    </Link>
   ));
 }

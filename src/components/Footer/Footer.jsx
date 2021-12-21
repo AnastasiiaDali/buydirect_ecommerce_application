@@ -6,6 +6,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
+// import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   footerContainer: {
@@ -14,6 +15,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: LightGreyBg,
     margin: '20px 0 0 0',
     fontSize: '16px'
+  },
+  '@media(minWidth: 780px)': {
+    width: '80%'
   }
 }));
 
@@ -28,7 +32,7 @@ export default function Footer() {
             <Typography xs={1}>ACCOUNT</Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1}>Sign In</Typography>
+            <Typography xs={1}>Register</Typography>
           </Grid>
           <Grid item>
             <Typography xs={1}>Log In</Typography>
@@ -53,16 +57,26 @@ export default function Footer() {
             <Typography>SOCIAL MEDIA</Typography>
           </Grid>
           <Grid item>
-            <InstagramIcon />
+            {/* <Link to={{ pathname: 'https://www.instagram.com/' }} target="_blank"> */}
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+              <InstagramIcon />
+            </a>
+            {/* </Link> */}
           </Grid>
           <Grid item>
-            <FacebookIcon />
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+              <FacebookIcon />
+            </a>
           </Grid>
           <Grid item>
-            <TwitterIcon />
+            <a href="https://www.twitter.com/" target="_blank" rel="noreferrer">
+              <TwitterIcon />
+            </a>
           </Grid>
           <Grid item>
-            <LinkedInIcon />
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+              <LinkedInIcon />
+            </a>
           </Grid>
         </Grid>
       </Grid>

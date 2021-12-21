@@ -6,6 +6,7 @@ import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
+import { Link } from 'react-router-dom';
 import { White, TextDarkGrey } from 'theme';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
@@ -97,7 +98,12 @@ export default function Search({ products }) {
                   <Box>empty search</Box>
                 ) : (
                   filteredProducts.map((product) => (
-                    <Box key={product.id} p={2}>
+                    <Box
+                      component={Link}
+                      to={`/products/${product.id}`}
+                      key={product.id}
+                      p={1}
+                      display="block">
                       {product.title}
                     </Box>
                   ))

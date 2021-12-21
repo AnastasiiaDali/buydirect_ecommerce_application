@@ -79,6 +79,13 @@ const theme = createTheme({
         }
       }
     },
+    input: {
+      root: {
+        '&:focus': {
+          borderColor: PrimaryBlue
+        }
+      }
+    },
     MuiSvgIcon: {
       root: {
         fill: TextDarkGrey
@@ -106,8 +113,35 @@ const theme = createTheme({
         minWidth: 64,
         backgroundColor: PrimaryBlue,
         '&:hover': {
-          backgroundColor: PrimaryBlueHover,
-          color: White
+          '@media (hover: none)': {
+            backgroundColor: PrimaryBlueHover,
+            color: White
+          }
+        }
+      },
+      outlined: {
+        color: PrimaryBlue,
+        padding: '10px 15px',
+        minWidth: 64,
+        borderColor: PrimaryBlue,
+        backgroundColor: LightGreyBg,
+        '&:hover': {
+          '@media (hover: none)': {
+            backgroundColor: PrimaryBlueHover,
+            color: PrimaryBlue
+          }
+        }
+      },
+      text: {
+        color: PrimaryBlue,
+        padding: '10px 15px',
+        minWidth: 64,
+        backgroundColor: White,
+        '&:hover': {
+          '@media (hover: none)': {
+            backgroundColor: White,
+            color: PrimaryBlue
+          }
         }
       }
     }

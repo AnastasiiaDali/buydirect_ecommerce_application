@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { PrimaryBlue } from 'theme';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { addToCart } from 'features/cart/cartSlice';
 
 const useStyles = makeStyles(() => ({
   imageProduct: {
@@ -53,37 +55,43 @@ const useStyles = makeStyles(() => ({
 
 export default function TopSellers() {
   const classes = useStyles();
-  const { data: items } = useQuery('products', () =>
+  const { data: products } = useQuery('products', () =>
     fetch('https://fakestoreapi.com/products').then((res) => res.json())
   );
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
   return (
     <Box>
       <Typography variant="h1" paragraph align="center" style={{ fontFamily: 'Montserrat' }}>
         Top Sellers
       </Typography>
       <Box className={classes.topSellersContainer}>
-        {items &&
-          items.map((item) => {
-            const { id, title, price, image } = item;
+        {products &&
+          products.map((product) => {
+            const { id, title, price, image } = product;
 
             return (
-              <Box
-                component={Link}
-                to={`/products/${id}`}
-                key={id}
-                className={classes.productContainer}>
-                <Box
-                  className={classes.imageProduct}
-                  style={{ background: `url(${image}) center center/contain no-repeat` }}
-                />
-                <Typography variant="h3" className={classes.productTitle}>
-                  {title}
-                </Typography>
-                <Typography variant="h3" className={classes.productPrice}>
-                  ${price}
-                </Typography>
+              <Box key={id} className={classes.productContainer}>
+                <Box component={Link} to={`/products/${id}`}>
+                  <Box
+                    className={classes.imageProduct}
+                    style={{ background: `url(${image}) center center/contain no-repeat` }}
+                  />
+                  <Typography variant="h3" className={classes.productTitle}>
+                    {title}
+                  </Typography>
+                  <Typography variant="h3" className={classes.productPrice}>
+                    ${price}
+                  </Typography>
+                </Box>
                 <div className={classes.addBtnFav}>
-                  <Button variant="contained">ADD TO CART</Button>
+                  <Button variant="contained" onClick={() => handleAddToCart(product)}>
+                    ADD TO CART
+                  </Button>
                   <IconButton>
                     <FavoriteBorderOutlinedIcon />
                   </IconButton>

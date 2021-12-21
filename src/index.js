@@ -9,6 +9,20 @@ import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 WebFont.load({
   google: {
@@ -31,9 +45,12 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Header />
-        <App />
-        <Footer />
+        <Provider store={store}>
+          <ScrollToTop />
+          <Header />
+          <App />
+          <Footer />
+        </Provider>
       </BrowserRouter>
     </ThemeProvider>
     <ReactQueryDevtools />

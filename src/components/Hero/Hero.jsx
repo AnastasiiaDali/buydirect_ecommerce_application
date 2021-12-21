@@ -2,12 +2,11 @@ import React from 'react';
 import mainBanner from '../../images/mainBanner.jpeg';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Box, Button } from '@material-ui/core';
+import { TextDarkGrey } from 'theme';
 
 const useStyles = makeStyles(() => ({
   image: {
-    backgroundImage: `url(${mainBanner})`,
-    backgroundPositionX: 'inherit',
-    backgroundSize: 'cover',
+    background: `url(${mainBanner}) left center/cover no-repeat`,
     overflow: 'hidden',
     width: '100vw',
     height: '500px',
@@ -21,7 +20,8 @@ const useStyles = makeStyles(() => ({
     width: '60vw',
     marginBottom: '20px',
     textAlign: 'center',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    color: TextDarkGrey
   }
 }));
 
