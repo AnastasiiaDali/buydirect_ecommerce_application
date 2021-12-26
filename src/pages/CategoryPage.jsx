@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { Typography, Box, Button, FormControlLabel, Checkbox } from '@material-ui/core';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
@@ -71,13 +72,22 @@ function CategoryPage() {
     dispatch(addToCart(product));
   };
 
-  if (isLoading) return 'Loading...';
-
   return (
     <>
       <Box className={classes.categoryContainer}>
         <Breads category={pathname.replace('/category/', '')} />
-        {products.map((product) => {
+        {isLoading &&
+          Array.from(Array(10).keys()).map((i) => (
+            <Box className={classes.productContainer} key={i}>
+              <Skeleton variant="rect" className={classes.imageProduct} />
+              <Skeleton variant="text" className={classes.productTitle} />
+              <Box display="flex" gridGap="8px" justifyContent="center" alignItems="center">
+                <Skeleton variant="rect" width={160} height={30} />
+                <Skeleton variant="circle" width={40} height={40} />
+              </Box>
+            </Box>
+          ))}
+        {products?.map((product) => {
           const { id, title, price, image } = product;
           return (
             <Box key={id} className={classes.productContainer}>
