@@ -1,9 +1,9 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, FormControlLabel, Checkbox } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import IconButton from '@material-ui/core/IconButton';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
 import { PrimaryBlue } from 'theme';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -33,11 +33,14 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     overflow: 'scroll',
-    minWidth: '80vw'
+    width: '90vw',
+    maxWidth: '1280px',
+    margin: '40px auto 40px auto'
   },
   productTitle: {
     display: '-webkit-box',
     lineClamp: 2,
+    minHeight: '52px',
     boxOrient: 'vertical',
     overflow: 'hidden',
     margin: '10px'
@@ -50,6 +53,9 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '4px'
+  },
+  favorite: {
+    margin: '0px'
   }
 }));
 
@@ -92,9 +98,15 @@ export default function TopSellers() {
                   <Button variant="contained" onClick={() => handleAddToCart(product)}>
                     ADD TO CART
                   </Button>
-                  <IconButton>
-                    <FavoriteBorderOutlinedIcon />
-                  </IconButton>
+                  <FormControlLabel
+                    className={classes.favorite}
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite color="primary" />}
+                      />
+                    }
+                  />
                 </div>
               </Box>
             );

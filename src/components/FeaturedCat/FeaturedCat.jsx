@@ -6,40 +6,62 @@ import { BlackBg, White } from 'theme';
 import { featuredCatData } from 'data/featuredCatData';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   imageBn: {
     marginTop: '-20px',
-    zIndex: 3,
-    objectFit: 'cover',
     display: 'flex',
     alignItems: 'end',
     justifyContent: 'flex-end',
     width: '90vw',
     height: '400px',
-    padding: '0',
-    margin: '0 auto 50px'
+    margin: '0 auto 50px',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '300px'
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '400px'
+    }
+  },
+  container: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      maxWidth: '1280px',
+      margin: '0 auto 0 auto'
+    }
   },
   bannerText: {
     padding: '10px 20px',
     backgroundColor: BlackBg,
     color: White,
-    maxWidth: '70vw',
+    maxWidth: '270px',
     marginBottom: '-10px',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '280px'
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '300px'
+    }
   }
 }));
 
 export default function FeaturedCat() {
   const classes = useStyles();
-  return featuredCatData.map((category, index) => (
-    <Link key={index} to="">
-      <Box
-        className={classes.imageBn}
-        style={{ background: `url(${category.image}) center center/cover no-repeat` }}>
-        <Typography variant="h1" p={3} align="center" className={classes.bannerText}>
-          {category.title}
-        </Typography>
-      </Box>
-    </Link>
-  ));
+  return (
+    <Box className={classes.container}>
+      {featuredCatData.map((category, index) => (
+        <Link key={index} to={`/category/${category.url}`}>
+          <Box
+            className={classes.imageBn}
+            style={{ background: `url(${category.image}) top center/cover no-repeat` }}>
+            <Typography variant="h1" p={3} align="center" className={classes.bannerText}>
+              {category.title}
+            </Typography>
+          </Box>
+        </Link>
+      ))}
+    </Box>
+  );
 }

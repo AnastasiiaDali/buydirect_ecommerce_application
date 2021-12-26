@@ -6,16 +6,15 @@ import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { White, TextDarkGrey } from 'theme';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   input: {
-    backgroundColor: White,
     width: '100%',
-    color: TextDarkGrey,
-    padding: '10px'
+    color: TextDarkGrey
   },
   autocomplete: {
     padding: '5px 10px',
@@ -27,6 +26,17 @@ const useStyles = makeStyles(() => ({
   searchResults: {
     overflow: 'scroll',
     maxHeight: 200
+  },
+  searchLabel: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+      padding: '10px'
+    }
+  },
+  popper: {
+    display: 'block',
+    [theme.breakpoints.up('md')]: {}
   }
 }));
 
@@ -70,6 +80,9 @@ export default function Search({ products }) {
         <div style={{ display: 'initial' }}>
           <IconButton onClick={handleClick}>
             <SearchOutlinedIcon />
+            <Typography variant="h4" className={classes.searchLabel}>
+              Search
+            </Typography>
           </IconButton>
           <Popper
             id={id}
