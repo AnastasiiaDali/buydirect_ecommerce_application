@@ -4,24 +4,41 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Box, Button } from '@material-ui/core';
 import { TextDarkGrey } from 'theme';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   image: {
-    background: `url(${mainBanner}) left center/cover no-repeat`,
     overflow: 'hidden',
     width: '100vw',
+    maxWidth: '1280px',
+    position: 'relative',
     height: '500px',
     padding: '0',
-    margin: '0'
+    margin: '0 auto 0 auto',
+    '&::before': {
+      content: `''`,
+      display: 'block',
+      position: 'absolute',
+      left: 0,
+      zIndex: -1,
+      top: 0,
+      width: '100%',
+      height: '100%',
+      opacity: 0.6,
+      background: `url(${mainBanner}) top center/cover no-repeat`
+    }
   },
   imageText: {
-    position: 'absolute',
+    position: 'relative',
     top: '150px',
     left: '25px',
     width: '60vw',
+    maxWidth: '400px',
     marginBottom: '20px',
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    color: TextDarkGrey
+    color: TextDarkGrey,
+    [theme.breakpoints.up('md')]: {
+      left: '180px'
+    }
   }
 }));
 
