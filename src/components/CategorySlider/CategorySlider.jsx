@@ -5,6 +5,7 @@ import allBanner from 'images/allBanner.png';
 import womenBanner from 'images/womenBanner.jpeg';
 import menBanner from 'images/menBanner.jpeg';
 import { Box } from '@material-ui/core';
+import withWidth from '@material-ui/core/withWidth';
 
 const images = [{ url: allBanner }, { url: womenBanner }, { url: menBanner }];
 const useStyles = makeStyles(() => ({
@@ -17,13 +18,14 @@ const useStyles = makeStyles(() => ({
   slider: {}
 }));
 
-const CategorySlider = () => {
+const CategorySlider = ({ width }) => {
   const classes = useStyles();
+  console.log(width);
   return (
     <Box className={classes.sliderContainer}>
       <SimpleImageSlider
         className={classes.slider}
-        width={900}
+        width={width === 'xs' || width === 'sm' || width === 'md' ? '90vw' : 1280}
         height={300}
         images={images}
         showBullets={true}
@@ -36,4 +38,4 @@ const CategorySlider = () => {
   );
 };
 
-export default CategorySlider;
+export default withWidth()(CategorySlider);
