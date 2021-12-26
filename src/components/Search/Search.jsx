@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { White, TextDarkGrey } from 'theme';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import isEmpty from 'helpers/isEmpty';
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -44,7 +45,7 @@ export default function Search({ products }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [inputValue, setInputValue] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState();
 
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -57,14 +58,14 @@ export default function Search({ products }) {
         ? products.filter((product) =>
             product.title.toLowerCase().includes(searchInput.toLowerCase())
           )
-        : [];
+        : null;
     setInputValue(searchInput);
     setFilteredProducts(searchData);
   };
 
   const handleClearInput = () => {
     setInputValue('');
-    setFilteredProducts([]);
+    setFilteredProducts(null);
   };
 
   const handleClickAway = () => {
@@ -74,6 +75,7 @@ export default function Search({ products }) {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
+  console.log(filteredProducts);
   return (
     <>
       <ClickAwayListener onClickAway={handleClickAway}>
@@ -107,18 +109,22 @@ export default function Search({ products }) {
                 }}
               />
               <Box className={classes.searchResults}>
-                {filteredProducts === [] ? (
-                  <Box>empty search</Box>
+                {isEmpty(filteredProducts) ? (
+                  <Typography paragrapg align="center" variant="body1">
+                    No products found
+                  </Typography>
                 ) : (
-                  filteredProducts.map((product) => (
-                    <Box
+                  filteredProducts?.map((product) => (
+                    <Typography
+                      onClick={handleClickAway}
                       component={Link}
                       to={`/products/${product.id}`}
                       key={product.id}
-                      p={1}
+                      paragraph
+                      variant="body1"
                       display="block">
                       {product.title}
-                    </Box>
+                    </Typography>
                   ))
                 )}
               </Box>
