@@ -44,7 +44,7 @@ export default function CartPage() {
   return (
     <>
       {cartItems.length > 0 ? (
-        <Box width="90vw" margin="80px auto 10px auto">
+        <Box width="90vw" maxWidth="1000px" margin="80px auto 10px auto">
           <Box>
             <Typography variant="h3" paragraph>
               Cart

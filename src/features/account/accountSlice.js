@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import produce from 'immer';
 
 const initialState = {
-  user: {}
+  user: {},
+  isLoggedIn: false
 };
 
 const accountSlice = createSlice({
@@ -16,9 +17,13 @@ const accountSlice = createSlice({
       });
       state.user = nextState;
       console.log(state.user);
+    },
+    userLogIn(state) {
+      state.isLoggedIn = true;
+      console.log('isLoggedin', state.isLoggedIn);
     }
   }
 });
 
-export const { addUser } = accountSlice.actions;
+export const { addUser, userLogIn } = accountSlice.actions;
 export default accountSlice.reducer;

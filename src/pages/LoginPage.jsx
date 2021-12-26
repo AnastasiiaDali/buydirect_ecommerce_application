@@ -6,6 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { TextDarkGrey, PrimaryBlue } from 'theme';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { userLogIn } from 'features/account/accountSlice';
 import { Link } from 'react-router-dom';
 
 import * as yup from 'yup';
@@ -54,12 +56,16 @@ let schema = yup
 export default function LoginPage() {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.account.user);
 
-  const onSubmit = (data) => {
-    console.log('Data:', data);
+  const handleUserLogIn = () => {
+    dispatch(userLogIn());
+  };
 
+  const onSubmit = (data) => {
     if (data.email === user.email && data.password === user.password) {
+      handleUserLogIn();
       navigate('/account');
       console.log('User:', user.email, user.password);
     } else {

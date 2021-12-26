@@ -74,7 +74,7 @@ export default function TopSellers() {
 
   return (
     <Box>
-      <Typography variant="h1" paragraph align="center" style={{ fontFamily: 'Montserrat' }}>
+      <Typography variant="h2" paragraph align="center" style={{ fontFamily: 'Montserrat' }}>
         Top Sellers
       </Typography>
 
@@ -100,10 +100,10 @@ export default function TopSellers() {
                   className={classes.imageProduct}
                   style={{ background: `url(${image}) center center/contain no-repeat` }}
                 />
-                <Typography variant="h3" className={classes.productTitle}>
+                <Typography variant="h4" className={classes.productTitle}>
                   {title}
                 </Typography>
-                <Typography variant="h3" className={classes.productPrice}>
+                <Typography variant="h4" className={classes.productPrice}>
                   ${price}
                 </Typography>
               </Box>

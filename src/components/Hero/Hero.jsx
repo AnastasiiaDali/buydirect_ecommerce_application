@@ -3,6 +3,7 @@ import mainBanner from '../../images/mainBanner.jpeg';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Box, Button } from '@material-ui/core';
 import { TextDarkGrey } from 'theme';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -45,17 +46,22 @@ const useStyles = makeStyles((theme) => ({
 export default function Hero() {
   const classes = useStyles();
   return (
-    <Box className={classes.image}>
-      <Box className={classes.imageText}>
-        <Typography variant="h2" gutterBottom style={{ fontFamily: 'Montserrat' }}>
-          Show The New Collection Today
-        </Typography>
-        <Typography variant="h3" align={'justify'} paragraph>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-          tincidunt ut laoreet dolore magna.
-        </Typography>
-        <Button variant="contained">Shop Now</Button>
+    <>
+      <Box className={classes.image}>
+        <Box className={classes.imageText}>
+          <Typography variant="h3" gutterBottom style={{ fontFamily: 'Montserrat' }}>
+            Show The New Collection Today
+          </Typography>
+          <Typography variant="h4" align={'justify'} paragraph>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+            tincidunt ut laoreet dolore magna.
+          </Typography>
+          <Button variant="contained" component={Link} to={'/category/all'}>
+            Shop Now
+          </Button>
+        </Box>
       </Box>
-    </Box>
+      <Box className={classes.background} />
+    </>
   );
 }

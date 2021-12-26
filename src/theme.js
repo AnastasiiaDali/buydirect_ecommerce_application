@@ -1,7 +1,6 @@
 import { createTheme } from '@material-ui/core/styles';
-// import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-
-// const breakpoints = createBreakpoints({});
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+const breakpoints = createBreakpoints({});
 
 export const PrimaryBlue = '#007399';
 export const PrimaryBlueHover = '#0099cc';
@@ -47,21 +46,34 @@ const theme = createTheme({
       'sans-serif'
     ].join(','),
     h1: {
-      fontSize: 30
+      fontSize: '1.75rem',
+      lineHeight: 1.2,
+      letterSpacing: '0.05rem',
+      [breakpoints.up('lg')]: {
+        fontSize: '4rem',
+        letterSpacing: '0.05rem',
+        lineHeight: 1.6
+      }
     },
     h2: {
-      fontSize: 28
+      fontSize: '1.313rem',
+      lineHeight: 1.2,
+      letterSpacing: '-0.06rem'
     },
     h3: {
-      fontSize: 20,
-      lineHeight: 1.3
+      fontSize: '1.313rem',
+      lineHeight: 1.2,
+      letterSpacing: '-0.06rem'
     },
     h4: {
-      fontSize: 16,
-      lineHeight: 1.3
+      fontSize: '1.125rem',
+      lineHeight: 1.4,
+      fontWeight: 300
     },
     body1: {
-      fontSize: 14
+      fontSize: '1rem',
+      lineHeight: 1.6,
+      fontWeight: 300
     },
     button: {
       fontWeight: 400,

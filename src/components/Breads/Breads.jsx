@@ -6,12 +6,15 @@ import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import { PrimaryBlue } from 'theme';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   breadcrumbs: {
     color: PrimaryBlue,
     width: '100%',
     justifyContent: 'center',
     display: 'flex'
+  },
+  link: {
+    fontSize: theme.typography.h3.fontSize
   }
 }));
 
@@ -20,17 +23,17 @@ export default function Breads({ category, title }) {
   return (
     <Box className={classes.breadcrumbs}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" to="/">
+        <Link color="inherit" to="/" className={classes.link}>
           Home
         </Link>
         {title && (
-          <Link color="inherit" to={`/category/${category}`}>
+          <Link color="inherit" className={classes.link} to={`/category/${category}`}>
             {category.charAt(0).toUpperCase().replace('/category/', '') +
               category.slice(1).replace('%20', ' ')}
           </Link>
         )}
 
-        <Typography color="textPrimary">
+        <Typography color="textPrimary" className={classes.link}>
           {title
             ? title.substring(0, 20)
             : `${category.charAt(0).toUpperCase() + category.slice(1).replace('%20', ' ')}`}

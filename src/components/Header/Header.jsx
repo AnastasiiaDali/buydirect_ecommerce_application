@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     left: '50%',
     transform: 'translateX(-50%)',
     fontFamily: 'Montserrat',
+    fontSize: theme.typography.h1.fontSize,
     [theme.breakpoints.up('md')]: {
       position: 'initial',
       transform: 'none'
@@ -51,6 +52,7 @@ export default function Header() {
   const { data: products } = useQuery('products', () =>
     fetch('https://fakestoreapi.com/products').then((res) => res.json())
   );
+  const isLoggedIn = useSelector((state) => state.account.isLoggedIn);
 
   const cartTotalQuantity = useSelector((state) => state.cart.cartTotalQuantity);
 
@@ -67,7 +69,7 @@ export default function Header() {
         <Box display="flex" flexDirection="row">
           <Search products={products} />
           <Box display={{ xs: 'none', md: 'flex' }}>
-            <IconButton component={Link} to="/register">
+            <IconButton component={Link} to={isLoggedIn ? '/account' : '/register'}>
               <AccountCircleOutlinedIcon />
             </IconButton>
           </Box>

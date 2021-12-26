@@ -33,10 +33,10 @@ export default function SpecialSale() {
   return (
     <Box className={classes.container}>
       <Box>
-        <Typography paragraph variant="h2" align="center">
+        <Typography paragraph variant="h3" align="center">
           Take Advantage of the Black friday TODAY!
         </Typography>
-        <Typography variant="h3" align="justify">
+        <Typography variant="h4" align="justify">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
           ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}

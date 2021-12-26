@@ -22,17 +22,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     paddingBottom: 8,
     borderBottom: '1px solid grey',
+    fontSize: theme.typography.h3.fontSize,
     [theme.breakpoints.up('md')]: {
       borderBottom: 'none',
       paddingBottom: 0,
       whiteSpace: 'nowrap'
-    }
-  },
-  menuItem: {
-    textAlign: 'center',
-    marginTop: '10px',
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
     }
   },
   button: {
@@ -43,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#007399',
     color: '#fff',
     borderRadius: 0,
+    fontSize: theme.typography.h3.fontSize,
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }

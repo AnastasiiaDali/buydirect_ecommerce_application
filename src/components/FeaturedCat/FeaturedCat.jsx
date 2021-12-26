@@ -35,15 +35,14 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px 20px',
     backgroundColor: BlackBg,
     color: White,
-    maxWidth: '270px',
+    minHeight: '80px',
+    minWidth: '250px',
+    maxWidth: '280px',
     marginBottom: '-10px',
     fontFamily: 'Montserrat',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '280px'
-    },
-    [theme.breakpoints.up('lg')]: {
-      maxWidth: '300px'
-    }
+    fontSize: theme.typography.h2.fontSize,
+    display: 'flex',
+    alignItems: 'center'
   }
 }));
 

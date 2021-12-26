@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px 40px 0',
     backgroundColor: LightGreyBg,
     margin: '20px 0 0 0',
-    fontSize: '16px',
     display: 'flex',
     [theme.breakpoints.down('xs')]: {
       padding: 16
@@ -44,16 +43,24 @@ export default function Footer() {
       <Grid container spacing={3} className={classes.footerContainerBox}>
         <Grid container item xs={4} md={3} spacing={1} direction="column" alignItems="flex-start">
           <Grid item>
-            <Typography xs={1}>CATEGORIES</Typography>
+            <Typography xs={1} variant="body1">
+              CATEGORIES
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1}>Women Clothes</Typography>
+            <Typography xs={1} variant="body1">
+              Women Clothes
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1}>Men Clothes</Typography>
+            <Typography xs={1} variant="body1">
+              Men Clothes
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1}>Jewerely</Typography>
+            <Typography xs={1} variant="body1">
+              Jewerely
+            </Typography>
           </Grid>
         </Grid>
         <Grid container item xs={4} md={3} spacing={1} direction="column" alignItems="flex-start">
@@ -61,13 +68,19 @@ export default function Footer() {
             <Typography xs={1}>ACCOUNT</Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1}>Register</Typography>
+            <Typography xs={1} variant="body1">
+              Register
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1}>Log In</Typography>
+            <Typography xs={1} variant="body1">
+              Log In
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1}>Orders</Typography>
+            <Typography xs={1} variant="body1">
+              Orders
+            </Typography>
           </Grid>
         </Grid>
         <Grid container item xs={4} md={3} spacing={1} direction="column">
@@ -75,10 +88,10 @@ export default function Footer() {
             <Typography>ABOUT US</Typography>
           </Grid>
           <Grid item>
-            <Typography>Our Story</Typography>
+            <Typography variant="body1">Our Story</Typography>
           </Grid>
           <Grid item>
-            <Typography>FAQs</Typography>
+            <Typography variant="body1">FAQs</Typography>
           </Grid>
         </Grid>
         <Grid className={classes.socialMedia} container item xs={12} md={3}>
@@ -92,7 +105,7 @@ export default function Footer() {
                   {social.icon}
                 </a>
                 <Box display={{ xs: 'none', md: 'flex' }}>
-                  <Typography>{social.label}</Typography>
+                  <Typography variant="body1">{social.label}</Typography>
                 </Box>
               </Grid>
             );
