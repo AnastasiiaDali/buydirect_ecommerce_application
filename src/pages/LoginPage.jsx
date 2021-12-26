@@ -1,11 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextDarkGrey, PrimaryBlue } from 'theme';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import * as yup from 'yup';
 
@@ -18,7 +19,8 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     gridGap: '3px',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: '30px'
   },
   input: {
     width: '80vw',
@@ -28,6 +30,12 @@ const useStyles = makeStyles(() => ({
     borderRadius: '5px',
     '&:focus-visible': {
       borderColor: PrimaryBlue
+    }
+  },
+  link: {
+    color: PrimaryBlue,
+    '&:hover': {
+      textDecoration: 'underline'
     }
   }
 }));
@@ -70,6 +78,9 @@ export default function LoginPage() {
 
   return (
     <Box className={classes.accountContainer}>
+      <Typography variant="h3" align="center" paragraph>
+        Log In
+      </Typography>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
         <input className={classes.input} type="email" {...register('email')} placeholder="Email" />
         <p>{errors.email?.message}</p>
@@ -84,6 +95,12 @@ export default function LoginPage() {
           Login
         </Button>
       </form>
+      <Typography variant="h4" paragraph align="center">
+        Do not have account yet?{' '}
+        <Link to={'/register'} className={classes.link}>
+          Register here
+        </Link>
+      </Typography>
     </Box>
   );
 }

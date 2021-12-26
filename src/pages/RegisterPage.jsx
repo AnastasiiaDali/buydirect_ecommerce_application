@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
@@ -69,8 +68,8 @@ export default function RegisterPage() {
   };
 
   const onSubmit = (data) => {
-      handleAddUser(data)
-      navigate('/login');
+    handleAddUser(data);
+    navigate('/login');
   };
 
   const {
