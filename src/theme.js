@@ -1,4 +1,7 @@
 import { createTheme } from '@material-ui/core/styles';
+// import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+
+// const breakpoints = createBreakpoints({});
 
 export const PrimaryBlue = '#007399';
 export const PrimaryBlueHover = '#0099cc';
@@ -99,6 +102,11 @@ const theme = createTheme({
         height: 1
       }
     },
+    MuiListItemText: {
+      inset: {
+        paddingLeft: 0
+      }
+    },
     MuiButton: {
       root: {
         textAlign: 'center',
@@ -111,6 +119,7 @@ const theme = createTheme({
         color: White,
         padding: '10px 15px',
         minWidth: 64,
+        maxWidth: 300,
         backgroundColor: PrimaryBlue,
         '&:hover': {
           '@media (hover: none)': {
