@@ -11,6 +11,7 @@ import Breads from 'components/Breads/Breads';
 import { useDispatch } from 'react-redux';
 import { addToCart } from 'features/cart/cartSlice';
 import { Link } from 'react-router-dom';
+import CategorySlider from 'components/CategorySlider/CategorySlider';
 
 const useStyles = makeStyles(() => ({
   categoryContainer: {
@@ -76,6 +77,7 @@ function CategoryPage() {
     <>
       <Box className={classes.categoryContainer}>
         <Breads category={pathname.replace('/category/', '')} />
+        <CategorySlider />
         {isLoading &&
           Array.from(Array(10).keys()).map((i) => (
             <Box className={classes.productContainer} key={i}>
