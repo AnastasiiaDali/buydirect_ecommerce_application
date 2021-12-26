@@ -54,19 +54,20 @@ export default function ProductPage() {
   const classes = useStyles();
   const [count, setCount] = useState(0);
 
-  console.log(count);
+  const { data: product, isLoading } = useQuery(['product', pathname], () =>
+    fetch(`https://fakestoreapi.com${pathname}`).then((res) => res.json())
+  );
 
   const handleDecreaseQuantity = () => {
     setCount(count - 1);
+    console.log(count);
   };
 
   const handleIncreaseQuantity = () => {
     setCount(count + 1);
+    console.log(count);
   };
 
-  const { data: product, isLoading } = useQuery(['product', pathname], () =>
-    fetch(`https://fakestoreapi.com${pathname}`).then((res) => res.json())
-  );
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {

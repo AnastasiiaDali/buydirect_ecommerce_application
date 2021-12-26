@@ -1,9 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Typography, Box, Button } from '@material-ui/core';
+import { Typography, Box, Button, FormControlLabel, Checkbox } from '@material-ui/core';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
 import { makeStyles } from '@material-ui/core/styles';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import IconButton from '@material-ui/core/IconButton';
 import { PrimaryBlue } from 'theme';
 import { useQuery } from 'react-query';
 import Breads from 'components/Breads/Breads';
@@ -13,11 +13,12 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   categoryContainer: {
-    marginTop: '78px',
+    margin: '78px auto 0 auto',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    minWidth: '100vw',
+    width: '100vw',
+    maxWidth: '1280px',
     justifyContent: 'center'
   },
   productContainer: {
@@ -39,6 +40,7 @@ const useStyles = makeStyles(() => ({
   productTitle: {
     display: '-webkit-box',
     lineClamp: 2,
+    minHeight: '52px',
     boxOrient: 'vertical',
     overflow: 'hidden',
     margin: '10px'
@@ -59,9 +61,10 @@ function CategoryPage() {
   const classes = useStyles();
 
   const { data: products, isLoading } = useQuery(['category', pathname], () =>
-    fetch(`https://fakestoreapi.com/products${pathname}`).then((res) => res.json())
+    fetch(`https://fakestoreapi.com/products${pathname === '/category/all' ? '' : pathname}`).then(
+      (res) => res.json()
+    )
   );
-
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
@@ -94,9 +97,14 @@ function CategoryPage() {
                 <Button variant="contained" onClick={() => handleAddToCart(product)}>
                   ADD TO CART
                 </Button>
-                <IconButton>
-                  <FavoriteBorderOutlinedIcon />
-                </IconButton>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      icon={<FavoriteBorder />}
+                      checkedIcon={<Favorite color="primary" />}
+                    />
+                  }
+                />
               </div>
             </Box>
           );
