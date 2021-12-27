@@ -11,6 +11,7 @@ export const TextLightGrey = '#696969';
 export const BlackBg = '#161616';
 export const White = '#fff';
 export const LightGreyBg = '#f2f2f2';
+export const Red = '#cc0000';
 
 const theme = createTheme({
   palette: {
@@ -30,6 +31,9 @@ const theme = createTheme({
     text: {
       primary: TextDarkGrey,
       secondary: TextLightGrey
+    },
+    error: {
+      main: Red
     },
     border: {
       main: LightGreyBg
@@ -75,6 +79,9 @@ const theme = createTheme({
       lineHeight: 1.6,
       fontWeight: 300
     },
+    body2: {
+      fontSize: '0.75rem'
+    },
     button: {
       fontWeight: 400,
       fontSize: '1rem',
@@ -107,6 +114,9 @@ const theme = createTheme({
       },
       colorPrimary: {
         fill: 'red'
+      },
+      colorSecondary: {
+        fill: '#fff'
       }
     },
     MuiDivider: {
@@ -131,13 +141,10 @@ const theme = createTheme({
         color: White,
         padding: '10px 15px',
         minWidth: 64,
-        maxWidth: 300,
         backgroundColor: PrimaryBlue,
         '&:hover': {
-          '@media (hover: none)': {
-            backgroundColor: PrimaryBlueHover,
-            color: White
-          }
+          backgroundColor: PrimaryBlueHover,
+          color: TextDarkGrey
         }
       },
       outlined: {

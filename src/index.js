@@ -13,6 +13,8 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
+import Slide from '@material-ui/core/Slide';
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();
@@ -43,15 +45,25 @@ const queryClient = new QueryClient({
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>
-        <Provider store={store}>
-          <ScrollToTop />
-          <Header />
-          <App />
-          <Footer />
-        </Provider>
-      </BrowserRouter>
+      <SnackbarProvider
+        maxSnack={3}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center'
+        }}
+        preventDuplicate
+        hideIconVariant
+        TransitionComponent={Slide}>
+        <CssBaseline />
+        <BrowserRouter>
+          <Provider store={store}>
+            <ScrollToTop />
+            <Header />
+            <App />
+            <Footer />
+          </Provider>
+        </BrowserRouter>
+      </SnackbarProvider>
     </ThemeProvider>
     <ReactQueryDevtools />
   </QueryClientProvider>,

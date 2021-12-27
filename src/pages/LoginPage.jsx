@@ -9,39 +9,88 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { userLogIn } from 'features/account/accountSlice';
 import { Link } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+// const MyButton = () => {
+//   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+//   const handleClick = () => {
+//       enqueueSnackbar('I love hooks');
+//   };
+
+//   return (
+//       <Button onClick={handleClick}>Show snackbar</Button>
+//   );
+// }
 
 import * as yup from 'yup';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   accountContainer: {
-    width: '100vw',
-    marginTop: '200px'
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '80px 16px 0',
+    maxWidth: '1000px',
+    margin: '0 auto 10px',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 100,
+      padding: '0 24px'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '90vw'
+    }
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gridGap: '3px',
     alignItems: 'center',
-    marginBottom: '30px'
+    width: 'fit-content',
+    height: 'auto',
+    margin: '0 auto 30px',
+    border: `1px solid ${TextDarkGrey}`,
+    borderRadius: '16px',
+    [theme.breakpoints.down('xs')]: {
+      border: 'none'
+    }
+  },
+  inputGroup: {
+    padding: '24px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start'
+  },
+  inputBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    gridGap: '4px'
   },
   input: {
-    width: '80vw',
-    maxWidth: '500px',
+    display: 'flex',
+    minWidth: '350px',
+    maxWidth: '350px',
     padding: '16px',
     border: `1px solid ${TextDarkGrey}`,
     borderRadius: '5px',
     '&:focus-visible': {
       borderColor: PrimaryBlue
+    },
+    [theme.breakpoints.down('xs')]: {
+      minWidth: '300px',
+      maxWidth: '300px'
     }
+  },
+  label: {
+    fontSize: theme.typography.body1.fontSize
   },
   link: {
     color: PrimaryBlue,
     '&:hover': {
       textDecoration: 'underline'
     }
+  },
+  snackBar: {
+    backgroundColor: '#465839'
   }
 }));
-
 let schema = yup
   .object()
   .shape({
@@ -57,6 +106,8 @@ export default function LoginPage() {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+
   const user = useSelector((state) => state.account.user);
 
   const handleUserLogIn = () => {
@@ -67,10 +118,11 @@ export default function LoginPage() {
     if (data.email === user.email && data.password === user.password) {
       handleUserLogIn();
       navigate('/account');
-      console.log('User:', user.email, user.password);
     } else {
-      navigate('/register');
-      console.log('User:', user.email, user.password);
+      enqueueSnackbar('Seems like you do not have an account yet, please go to register', {
+        variant: 'info',
+        autoHideDuration: 3000
+      });
     }
   };
 
@@ -84,22 +136,47 @@ export default function LoginPage() {
 
   return (
     <Box className={classes.accountContainer}>
-      <Typography variant="h3" align="center" paragraph>
+      <Typography variant="h2" align="center" paragraph>
         Log In
       </Typography>
+
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-        <input className={classes.input} type="email" {...register('email')} placeholder="Email" />
-        <p>{errors.email?.message}</p>
-        <input
-          className={classes.input}
-          type="password"
-          {...register('password')}
-          placeholder="password"
-        />
-        <p>{errors.password?.message}</p>
-        <Button variant="contained" type="submit">
-          Login
-        </Button>
+        <Box className={classes.inputGroup}>
+          <Box className={classes.inputBox}>
+            <label className={classes.label} htmlFor="name">
+              Email
+            </label>
+            <input
+              className={classes.input}
+              type="email"
+              {...register('email')}
+              placeholder="Email"
+            />
+            <Typography color="error" variant="body2" paragraph>
+              {errors.email?.message}
+            </Typography>
+          </Box>
+
+          <Box className={classes.inputBox}>
+            <label className={classes.label} htmlFor="name">
+              Password
+            </label>
+            <input
+              className={classes.input}
+              type="password"
+              {...register('password')}
+              placeholder="password"
+            />
+            <Typography color="error" variant="body2" paragraph>
+              {errors.password?.message}
+            </Typography>
+          </Box>
+          <Box marginTop="20px" width="100%">
+            <Button fullWidth variant="contained" type="submit">
+              Login
+            </Button>
+          </Box>
+        </Box>
       </form>
       <Typography variant="h4" paragraph align="center">
         Do not have account yet?{' '}
