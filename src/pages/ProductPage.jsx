@@ -10,29 +10,86 @@ import { useQuery } from 'react-query';
 import Divider from '@material-ui/core/Divider';
 import { useDispatch } from 'react-redux';
 import { addToCart } from 'features/cart/cartSlice';
-import White from 'theme';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-const useStyles = makeStyles(() => ({
-  productContainer: {
-    margin: '76px auto 76px 0',
-    flexDirection: 'column',
+const useStyles = makeStyles((theme) => ({
+  container: {
     display: 'flex',
-    gridGap: '24px',
-    px: 6,
+    flexDirection: 'column',
+    padding: '80px 16px 0',
+    overflow: 'hidden',
+    maxWidth: '1280px',
+    margin: '0 auto 10px',
+    [theme.breakpoints.up('sm')]: {
+      padding: '80px 48px 0'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '90vw'
+    }
+  },
+  fullProductInfoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
     textAlign: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    gridGap: '24px',
+    marginBottom: '40px',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      marginBottom: '60px'
+    }
+  },
+  productDescContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gridGap: '32px',
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      alignItems: 'start',
+      textAlign: 'justify'
+    }
+  },
+  productInforAndButtons: {
+    display: 'flex',
+    flexDirection: 'column',
+    gridGap: '24px',
+    [theme.breakpoints.up('md')]: {
+      width: '60%'
+    }
+  },
+  imageProductWrapper: {
+    padding: '8px',
+    borderRadius: '8px',
+    border: '1px solid grey',
+    marginRight: 8,
+    display: 'flex',
+    width: '240px',
+    height: '240px',
+    [theme.breakpoints.up('md')]: {
+      width: '380px',
+      height: '380px'
+    }
   },
   imageProduct: {
-    objectFit: 'scale-down',
-    width: '190px',
-    height: '190px',
-    margin: '5px',
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto'
+    margin: 'auto',
+    height: '100%'
+  },
+
+  counterFavAdd: {
+    display: 'flex',
+    flexDirection: 'column',
+    gridGap: '32px',
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start'
+    }
   },
   addBtnFav: {
     display: 'flex',
@@ -40,12 +97,13 @@ const useStyles = makeStyles(() => ({
   },
   counter: {
     display: 'flex',
-    width: '60px',
-    alignItems: 'center',
-    justifyContent: 'center'
+    gridGap: '20px',
+    alignItems: 'center'
   },
-  icon: {
-    fill: White
+  divider: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+    }
   }
 }));
 
@@ -60,76 +118,80 @@ export default function ProductPage() {
 
   const handleDecreaseQuantity = () => {
     setCount(count - 1);
-    console.log(count);
   };
 
   const handleIncreaseQuantity = () => {
     setCount(count + 1);
-    console.log(count);
   };
 
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart({ ...product, itemQuantity: count }));
+    dispatch(addToCart({ ...product, itemQuantityTemp: count }));
   };
 
   if (isLoading) return 'Loading...';
 
   return (
-    <>
-      <Box className={classes.productContainer}>
-        <Breads category={product.category} title={product.title} />
-        <div
-          className={classes.imageProduct}
-          style={{
-            background: `url(${product.image}) center center/contain no-repeat`
-          }}
-        />
-        <Typography variant="h3">{product.title}</Typography>
+    <Box className={classes.container}>
+      <Breads category={product.category} title={product.title} />
+      {/* Ful product info with image */}
+      <Box className={classes.fullProductInfoContainer}>
+        {/* Product Image */}
 
-        <Divider flexItem />
-
-        <Typography variant="h4">${product.price}</Typography>
-
-        <Divider flexItem />
-
-        <Typography variant="body1">{product.description}</Typography>
-
-        <Divider flexItem />
-
-        <Box display="flex">
-          <Button
-            variant="contained"
-            disabled={count === 0}
-            onClick={() => handleDecreaseQuantity()}>
-            <RemoveIcon className={classes.icon} />
-          </Button>
-          <Box className={classes.counter}>{count}</Box>
-          <Button variant="contained" onClick={() => handleIncreaseQuantity()}>
-            <AddIcon className={classes.icon} />
-          </Button>
-        </Box>
-
-        <Divider flexItem />
-
-        <div className={classes.addBtnFav}>
-          <Button
-            variant="contained"
-            disabled={count === 0}
-            onClick={() => handleAddToCart(product)}>
-            ADD TO CART
-          </Button>
-          <FormControlLabel
-            control={
-              <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
-            }
-            label="Add to Favorite"
-          />
+        <div className={classes.imageProductWrapper}>
+          <img className={classes.imageProduct} src={product.image} alt={product.title} />
         </div>
-      </Box>
+        {/* Product info + buttons */}
+        <Box className={classes.productInforAndButtons}>
+          {/* Product Description */}
+          <Box className={classes.productDescContainer}>
+            <Typography variant="h3">{product.title}</Typography>
 
+            <Divider className={classes.divider} flexItem />
+
+            <Typography variant="h4">${product.price}</Typography>
+
+            <Divider className={classes.divider} flexItem />
+
+            <Typography variant="body1">{product.description}</Typography>
+
+            <Divider className={classes.divider} flexItem />
+          </Box>
+          {/* COUNTER and FAVORITE/ADD */}
+          <Box className={classes.counterFavAdd}>
+            {/* Counter */}
+            <Box className={classes.counter}>
+              <Button
+                variant="contained"
+                disabled={count === 0}
+                onClick={() => handleDecreaseQuantity()}>
+                <RemoveIcon color="secondary" className={classes.icon} />
+              </Button>
+              <Box className={classes.counter}>{count}</Box>
+              <Button variant="contained" onClick={() => handleIncreaseQuantity()}>
+                <AddIcon color="secondary" className={classes.icon} />
+              </Button>
+            </Box>
+            {/* Add FAVORITE and Add to CART button */}
+            <Box className={classes.addBtnFav}>
+              <Button
+                variant="contained"
+                disabled={count === 0}
+                onClick={() => handleAddToCart(product)}>
+                ADD TO CART
+              </Button>
+              <FormControlLabel
+                control={
+                  <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
+                }
+                label="Add to Favorite"
+              />{' '}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
       <TopSellers />
-    </>
+    </Box>
   );
 }

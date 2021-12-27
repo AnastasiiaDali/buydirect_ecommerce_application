@@ -13,15 +13,22 @@ import { addToCart } from 'features/cart/cartSlice';
 import { Link } from 'react-router-dom';
 import CategorySlider from 'components/CategorySlider/CategorySlider';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   categoryContainer: {
-    margin: '78px auto 0 auto',
+    padding: '80px 16px 0',
+    overflow: 'hidden',
+    maxWidth: '1280px',
+    margin: '0 auto 10px',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width: '100vw',
-    maxWidth: '1280px',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    [theme.breakpoints.up('sm')]: {
+      padding: '60px 24px 0'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '90vw'
+    }
   },
   productContainer: {
     display: 'grid',
@@ -31,7 +38,7 @@ const useStyles = makeStyles(() => ({
     height: 'fit-content',
     border: `1px solid ${PrimaryBlue}`,
     borderRadius: '5px',
-    margin: '30px 5px 5px 5px',
+    margin: '0 5px 5px 5px',
     backgroundColor: '#fff'
   },
   imageProduct: {
@@ -74,55 +81,50 @@ function CategoryPage() {
   };
 
   return (
-    <>
-      <Box className={classes.categoryContainer}>
-        <Breads category={pathname.replace('/category/', '')} />
-        <CategorySlider />
-        {isLoading &&
-          Array.from(Array(10).keys()).map((i) => (
-            <Box className={classes.productContainer} key={i}>
-              <Skeleton variant="rect" className={classes.imageProduct} />
-              <Skeleton variant="text" className={classes.productTitle} />
-              <Box display="flex" gridGap="8px" justifyContent="center" alignItems="center">
-                <Skeleton variant="rect" width={160} height={30} />
-                <Skeleton variant="circle" width={40} height={40} />
-              </Box>
+    <Box className={classes.categoryContainer}>
+      <CategorySlider />
+      <Breads category={pathname.replace('/category/', '')} />
+      {isLoading &&
+        Array.from(Array(10).keys()).map((i) => (
+          <Box className={classes.productContainer} key={i}>
+            <Skeleton variant="rect" className={classes.imageProduct} />
+            <Skeleton variant="text" className={classes.productTitle} />
+            <Box display="flex" gridGap="8px" justifyContent="center" alignItems="center">
+              <Skeleton variant="rect" width={160} height={30} />
+              <Skeleton variant="circle" width={40} height={40} />
             </Box>
-          ))}
-        {products?.map((product) => {
-          const { id, title, price, image } = product;
-          return (
-            <Box key={id} className={classes.productContainer}>
-              <Box component={Link} to={`/products/${id}`}>
-                <Box
-                  className={classes.imageProduct}
-                  style={{ background: `url(${image}) center center/contain no-repeat` }}
-                />
-                <Typography variant="h3" className={classes.productTitle}>
-                  {title}
-                </Typography>
-                <Typography variant="h3" className={classes.productPrice}>
-                  ${price}
-                </Typography>
-              </Box>
-              <div className={classes.addBtnFav}>
-                <Button variant="contained" onClick={() => handleAddToCart(product)}>
-                  ADD TO CART
-                </Button>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      icon={<FavoriteBorder />}
-                      checkedIcon={<Favorite color="primary" />}
-                    />
-                  }
-                />
-              </div>
+          </Box>
+        ))}
+      {products?.map((product) => {
+        const { id, title, price, image } = product;
+        return (
+          <Box key={id} className={classes.productContainer}>
+            <Box component={Link} to={`/products/${id}`}>
+              <Box
+                className={classes.imageProduct}
+                style={{ background: `url(${image}) center center/contain no-repeat` }}
+              />
+              <Typography variant="h3" className={classes.productTitle}>
+                {title}
+              </Typography>
+              <Typography variant="h3" className={classes.productPrice}>
+                ${price}
+              </Typography>
             </Box>
-          );
-        })}
-      </Box>
-    </>
+            <div className={classes.addBtnFav}>
+              <Button variant="contained" onClick={() => handleAddToCart(product)}>
+                ADD TO CART
+              </Button>
+              <FormControlLabel
+                control={
+                  <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
+                }
+              />
+            </div>
+          </Box>
+        );
+      })}
+    </Box>
   );
 }
 

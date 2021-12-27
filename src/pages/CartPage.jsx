@@ -8,26 +8,69 @@ import { makeStyles } from '@material-ui/core/styles';
 import emptyCart from 'images/emptyCart.png';
 
 const useStyles = makeStyles((theme) => ({
-  imageProduct: {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '80px 16px 0',
+    maxWidth: '1000px',
+    margin: '0 auto 10px',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 100,
+      padding: '0 24px'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: '90vw'
+    }
+  },
+  paragraph: {
+    width: '100%'
+  },
+  productWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gridGap: '50px',
+    my: 2
+  },
+  imageProductWrapper: {
     minWidth: '120px',
     height: '120px',
-    margin: '5px',
-    display: 'block'
+    padding: '8px',
+    borderRadius: '8px',
+    border: '1px solid grey',
+    marginRight: 8,
+    display: 'flex'
+  },
+  imageProduct: {
+    margin: 'auto',
+    height: '100%'
   },
   emptyCartImg: {
     display: 'flex',
     alignItems: 'center',
     maxWidth: '90vw',
     height: 'auto',
-    margin: '0 auto 0 auto'
+    margin: '80px auto 0'
+  },
+  totals: {
+    alignSelf: 'flex-end',
+    mt: 2
   },
   counterRemove: {
+    display: 'flex',
+    flexDirection: 'column',
+    gridGap: '16px',
+    alignItems: 'flex-start',
     [theme.breakpoints.up('sm')]: {
-      display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
-      minWidth: '70vw'
+      width: '-webkit-fill-available',
+      justifyContent: 'space-between'
     }
+  },
+  counterWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gridGap: '16px',
+    alignItems: 'flex-start'
   }
 }));
 
@@ -44,45 +87,24 @@ export default function CartPage() {
   return (
     <>
       {cartItems.length > 0 ? (
-        <Box width="90vw" maxWidth="1000px" margin="80px auto 10px auto">
-          <Box>
-            <Typography variant="h3" paragraph>
-              Cart
-            </Typography>
-          </Box>
+        <Box className={classes.container}>
+          <Typography className={classes.paragraph} variant="h3" paragraph>
+            Shopping Cart
+          </Typography>
 
-          <Box
-            display="flex"
-            flexDirection="column"
-            maxWidth="700px"
-            gridGap="50px"
-            mb="40px"
-            mt="40px">
+          <Box className={classes.productWrapper}>
             {cartItems.map((product) => {
-              console.log(product);
               return (
-                <Box display="flex" flexDirection="row" gridGap="16px" key={product.id}>
-                  <div
-                    className={classes.imageProduct}
-                    style={{
-                      background: `url(${product.image}) center center/contain no-repeat`
-                    }}
-                  />
-                  <Box
-                    className={classes.counterRemove}
-                    display="flex"
-                    flexDirection="column"
-                    gridGap="16px"
-                    alignItems="flex-start">
+                <Box display="flex" key={product.id}>
+                  <div className={classes.imageProductWrapper}>
+                    <img className={classes.imageProduct} src={product.image} alt={product.title} />
+                  </div>
+                  <Box className={classes.counterRemove}>
                     <Box>
                       <Typography variant="h4">{product.title}</Typography>
                       <Typography variant="h4">Price: ${product.price}</Typography>
                     </Box>
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      gridGap="15px"
-                      alignItems="flex-start">
+                    <Box className={classes.counterWrapper}>
                       <Counter product={product} />
                       <Button
                         variant="text"
@@ -96,33 +118,20 @@ export default function CartPage() {
               );
             })}
           </Box>
-          <Box
-            gridGap="10px"
-            margin="0 10px 0 auto"
-            display="flex"
-            flexDirection="column"
-            maxWidth="70vw"
-            alignItems="flex-end">
+          <Box className={classes.totals}>
             <Box display="flex" justifyContent="space-between">
-              <Typography paragraph variant="h4">
-                Total:{' '}
-              </Typography>
-              <Typography paragraph variant="h4">
-                ${cartTotaAmount.toFixed(2)}
-              </Typography>
+              <Typography variant="h4">Subtotal:</Typography>
+              <Typography variant="h4">${cartTotaAmount.toFixed(2)}</Typography>
+            </Box>
+            <Box display="flex" justifyContent="space-between" mb={2}>
+              <Typography variant="h4">Total:</Typography>
+              <Typography variant="h4">${cartTotaAmount.toFixed(2)}</Typography>
             </Box>
             <Button variant="contained">PROCEED TO CHECK OUT</Button>
           </Box>
         </Box>
       ) : (
-        <Box width="90vw" margin="80px auto 10px">
-          <Box>
-            <Typography variant="h3" paragraph>
-              Cart
-            </Typography>
-            <img className={classes.emptyCartImg} src={emptyCart} alt="empty cart" />
-          </Box>
-        </Box>
+        <img className={classes.emptyCartImg} src={emptyCart} alt="empty cart" />
       )}
     </>
   );

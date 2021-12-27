@@ -12,6 +12,11 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from 'features/cart/cartSlice';
 
 const useStyles = makeStyles(() => ({
+  topSellersContainer: {
+    display: 'flex',
+    overflow: 'scroll',
+    margin: '40px 0'
+  },
   imageProduct: {
     objectFit: 'scale-down',
     width: '190px',
@@ -30,14 +35,7 @@ const useStyles = makeStyles(() => ({
     margin: '5px',
     backgroundColor: '#fff'
   },
-  topSellersContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    overflow: 'scroll',
-    width: '90vw',
-    maxWidth: '1280px',
-    margin: '40px auto 40px auto'
-  },
+
   productTitle: {
     display: '-webkit-box',
     lineClamp: 2,
@@ -73,8 +71,8 @@ export default function TopSellers() {
   };
 
   return (
-    <Box>
-      <Typography variant="h2" paragraph align="center" style={{ fontFamily: 'Montserrat' }}>
+    <>
+      <Typography variant="h1" align="center" style={{ fontFamily: 'Montserrat' }}>
         Top Sellers
       </Typography>
 
@@ -125,6 +123,6 @@ export default function TopSellers() {
           );
         })}
       </Box>
-    </Box>
+    </>
   );
 }

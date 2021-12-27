@@ -10,11 +10,14 @@ const useStyles = makeStyles((theme) => ({
   breadcrumbs: {
     color: PrimaryBlue,
     width: '100%',
-    justifyContent: 'center',
-    display: 'flex'
+    display: 'flex',
+    margin: '24px auto'
   },
   link: {
-    fontSize: theme.typography.h3.fontSize
+    fontSize: theme.typography.body1.fontSize,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: theme.typography.body1.fontSize
+    }
   }
 }));
 
@@ -35,7 +38,7 @@ export default function Breads({ category, title }) {
 
         <Typography color="textPrimary" className={classes.link}>
           {title
-            ? title.substring(0, 20)
+            ? title.substring(0, 15) + '...'
             : `${category.charAt(0).toUpperCase() + category.slice(1).replace('%20', ' ')}`}
         </Typography>
       </Breadcrumbs>
