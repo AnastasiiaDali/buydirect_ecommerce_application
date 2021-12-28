@@ -16,13 +16,16 @@ import CategorySlider from 'components/CategorySlider/CategorySlider';
 const useStyles = makeStyles((theme) => ({
   categoryContainer: {
     padding: '80px 16px 0',
-    overflow: 'hidden',
     maxWidth: '1280px',
+    minHeight: 'calc(100vh  - 197px)',
     margin: '0 auto 10px',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      padding: '40px 8px 0'
+    },
     [theme.breakpoints.up('sm')]: {
       padding: '60px 24px 0'
     },
@@ -30,15 +33,20 @@ const useStyles = makeStyles((theme) => ({
       width: '90vw'
     }
   },
+  slider: {
+    maxWidth: '1280px',
+    margin: '15px auto 10px',
+    width: '100%'
+  },
   productContainer: {
     display: 'grid',
     width: '47%',
     maxWidth: '240px',
-    minWidth: '180px',
+    minWidth: '168px',
     height: 'fit-content',
     border: `1px solid ${PrimaryBlue}`,
     borderRadius: '5px',
-    margin: '0 5px 5px 5px',
+    margin: '0 5px 5px',
     backgroundColor: '#fff'
   },
   imageProduct: {
@@ -56,12 +64,20 @@ const useStyles = makeStyles((theme) => ({
   },
   productPrice: {
     padding: '2px',
-    margin: 'auto 10px 10px 10px'
+    margin: 'auto 10px 10px'
   },
   addBtnFav: {
     display: 'flex',
-    justifyContent: 'space-between',
-    margin: '4px'
+    justifyContent: 'space-around',
+    margin: '8px',
+    [theme.breakpoints.down('xs')]: {
+      margin: '4px'
+    }
+  },
+  addButton: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '12px'
+    }
   }
 }));
 
@@ -82,7 +98,9 @@ function CategoryPage() {
 
   return (
     <Box className={classes.categoryContainer}>
-      <CategorySlider />
+      <Box className={classes.slider}>
+        <CategorySlider />
+      </Box>
       <Breads category={pathname.replace('/category/', '')} />
       {isLoading &&
         Array.from(Array(10).keys()).map((i) => (
@@ -104,18 +122,22 @@ function CategoryPage() {
                 className={classes.imageProduct}
                 style={{ background: `url(${image}) center center/contain no-repeat` }}
               />
-              <Typography variant="h3" className={classes.productTitle}>
+              <Typography variant="h4" className={classes.productTitle}>
                 {title}
               </Typography>
-              <Typography variant="h3" className={classes.productPrice}>
+              <Typography variant="h4" className={classes.productPrice}>
                 ${price}
               </Typography>
             </Box>
             <div className={classes.addBtnFav}>
-              <Button variant="contained" onClick={() => handleAddToCart(product)}>
+              <Button
+                className={classes.addButton}
+                variant="contained"
+                onClick={() => handleAddToCart(product)}>
                 ADD TO CART
               </Button>
               <FormControlLabel
+                style={{ margin: '0 0 0 4px' }}
                 control={
                   <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
                 }
