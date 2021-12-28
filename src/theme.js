@@ -60,7 +60,7 @@ const theme = createTheme({
       }
     },
     h2: {
-      fontSize: '1.313rem',
+      fontSize: '1.5rem',
       lineHeight: 1.2,
       letterSpacing: '-0.06rem'
     },
@@ -78,6 +78,13 @@ const theme = createTheme({
       fontSize: '1rem',
       lineHeight: 1.7,
       fontWeight: 300
+    },
+    subtitle1: {
+      fontSize: '1rem',
+      lineHeight: 1.7,
+      fontWeight: 300,
+      color: Red,
+      textDecoration: 'line-through'
     },
     body2: {
       fontSize: '0.75rem'

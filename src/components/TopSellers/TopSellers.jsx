@@ -11,7 +11,15 @@ import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { addToCart } from 'features/cart/cartSlice';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: '0px 16px 0',
+    maxWidth: '1280px',
+    margin: '0 auto',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0px 8px 0'
+    }
+  },
   topSellersContainer: {
     display: 'flex',
     overflow: 'scroll',
@@ -71,8 +79,8 @@ export default function TopSellers() {
   };
 
   return (
-    <>
-      <Typography variant="h1" align="center" style={{ fontFamily: 'Montserrat' }}>
+    <Box className={classes.container}>
+      <Typography variant="h2" align="center" style={{ fontFamily: 'Montserrat' }}>
         Top Sellers
       </Typography>
 
@@ -123,6 +131,6 @@ export default function TopSellers() {
           );
         })}
       </Box>
-    </>
+    </Box>
   );
 }
