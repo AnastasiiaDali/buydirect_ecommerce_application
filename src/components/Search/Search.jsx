@@ -75,7 +75,6 @@ export default function Search({ products }) {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
-  console.log(filteredProducts);
   return (
     <>
       <ClickAwayListener onClickAway={handleClickAway}>
