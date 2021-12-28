@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Typography, Box, Button, FormControlLabel, Checkbox } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
@@ -15,6 +16,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    minHeight: 'calc(100vh  - 197px)',
     display: 'flex',
     flexDirection: 'column',
     padding: '80px 16px 0',
@@ -130,68 +132,82 @@ export default function ProductPage() {
     dispatch(addToCart({ ...product, itemQuantityTemp: count }));
   };
 
-  if (isLoading) return 'Loading...';
-
   return (
     <Box className={classes.container}>
-      <Breads category={product.category} title={product.title} />
-      {/* Ful product info with image */}
-      <Box className={classes.fullProductInfoContainer}>
-        {/* Product Image */}
-
-        <div className={classes.imageProductWrapper}>
-          <img className={classes.imageProduct} src={product.image} alt={product.title} />
-        </div>
-        {/* Product info + buttons */}
-        <Box className={classes.productInforAndButtons}>
-          {/* Product Description */}
-          <Box className={classes.productDescContainer}>
-            <Typography variant="h3">{product.title}</Typography>
-
-            <Divider className={classes.divider} flexItem />
-
-            <Typography variant="h4">${product.price}</Typography>
-
-            <Divider className={classes.divider} flexItem />
-
-            <Typography variant="body1">{product.description}</Typography>
-
-            <Divider className={classes.divider} flexItem />
-          </Box>
-          {/* COUNTER and FAVORITE/ADD */}
-          <Box className={classes.counterFavAdd}>
-            {/* Counter */}
-            <Box className={classes.counter}>
-              <Button
-                variant="contained"
-                disabled={count === 0}
-                onClick={() => handleDecreaseQuantity()}>
-                <RemoveIcon color="secondary" className={classes.icon} />
-              </Button>
-              <Box className={classes.counter}>{count}</Box>
-              <Button variant="contained" onClick={() => handleIncreaseQuantity()}>
-                <AddIcon color="secondary" className={classes.icon} />
-              </Button>
-            </Box>
-            {/* Add FAVORITE and Add to CART button */}
-            <Box className={classes.addBtnFav}>
-              <Button
-                variant="contained"
-                disabled={count === 0}
-                onClick={() => handleAddToCart(product)}>
-                ADD TO CART
-              </Button>
-              <FormControlLabel
-                control={
-                  <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
-                }
-                label="Add to Favorite"
-              />{' '}
-            </Box>
+      {isLoading ? (
+        <Box display="flex" gridGap="40px">
+          <Skeleton variant="rect" className={classes.imageProductWrapper} />
+          <Box display="flex" flexDirection="column" gridGap="20px">
+            <Skeleton variant="text" width={400} height={150} />
+            <Skeleton variant="text" width={400} height={100} />
+            <Skeleton variant="rect" width={130} height={30} />
+            <Skeleton variant="rect" width={60} height={60} />
           </Box>
         </Box>
-      </Box>
-      <TopSellers />
+      ) : (
+        <>
+          <Breads category={product.category} title={product.title} />
+          {/* Ful product info with image */}
+          <Box className={classes.fullProductInfoContainer}>
+            {/* Product Image */}
+            <div className={classes.imageProductWrapper}>
+              <img className={classes.imageProduct} src={product.image} alt={product.title} />
+            </div>
+            {/* Product info + buttons */}
+            <Box className={classes.productInforAndButtons}>
+              {/* Product Description */}
+              <Box className={classes.productDescContainer}>
+                <Typography variant="h3">{product.title}</Typography>
+
+                <Divider className={classes.divider} flexItem />
+
+                <Typography variant="h4">${product.price}</Typography>
+
+                <Divider className={classes.divider} flexItem />
+
+                <Typography variant="body1">{product.description}</Typography>
+
+                <Divider className={classes.divider} flexItem />
+              </Box>
+              {/* COUNTER and FAVORITE/ADD */}
+              <Box className={classes.counterFavAdd}>
+                {/* Counter */}
+                <Box className={classes.counter}>
+                  <Button
+                    variant="contained"
+                    disabled={count === 0}
+                    onClick={() => handleDecreaseQuantity()}>
+                    <RemoveIcon color="secondary" className={classes.icon} />
+                  </Button>
+                  <Box className={classes.counter}>{count}</Box>
+                  <Button variant="contained" onClick={() => handleIncreaseQuantity()}>
+                    <AddIcon color="secondary" className={classes.icon} />
+                  </Button>
+                </Box>
+                {/* Add FAVORITE and Add to CART button */}
+                <Box className={classes.addBtnFav}>
+                  <Button
+                    variant="contained"
+                    disabled={count === 0}
+                    onClick={() => handleAddToCart(product)}>
+                    ADD TO CART
+                  </Button>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite color="primary" />}
+                      />
+                    }
+                    label="Add to Favorite"
+                  />{' '}
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+          <TopSellers />
+        </>
+      )}
     </Box>
   );
 }
