@@ -16,11 +16,9 @@ const accountSlice = createSlice({
         delete draftState.confirmPassword;
       });
       state.user = nextState;
-      console.log(state.user);
     },
     userLogIn(state) {
       state.isLoggedIn = true;
-      console.log('isLoggedin', state.isLoggedIn);
     }
   }
 });
