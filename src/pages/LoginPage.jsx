@@ -10,17 +10,6 @@ import { useDispatch } from 'react-redux';
 import { userLogIn } from 'features/account/accountSlice';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-// const MyButton = () => {
-//   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
-//   const handleClick = () => {
-//       enqueueSnackbar('I love hooks');
-//   };
-
-//   return (
-//       <Button onClick={handleClick}>Show snackbar</Button>
-//   );
-// }
 
 import * as yup from 'yup';
 
@@ -28,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
   accountContainer: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '80px 16px 0',
+    minHeight: 'calc(100vh  - 197px)',
+    padding: '100px 16px 0',
     maxWidth: '1000px',
     margin: '0 auto 10px',
     [theme.breakpoints.up('sm')]: {
