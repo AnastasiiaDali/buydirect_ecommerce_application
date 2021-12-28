@@ -2,10 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useNavigate } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
+import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
 import { Link } from 'react-router-dom';
+import { White } from 'theme';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -22,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     paddingBottom: 8,
     borderBottom: '1px solid grey',
-    fontSize: theme.typography.h3.fontSize,
+    fontSize: theme.typography.h4.fontSize,
     [theme.breakpoints.up('md')]: {
       borderBottom: 'none',
       paddingBottom: 0,
@@ -30,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   button: {
+    display: 'flex',
+    gridGap: '8px',
     position: 'fixed',
     bottom: 0,
     left: 0,
@@ -37,10 +42,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#007399',
     color: '#fff',
     borderRadius: 0,
-    fontSize: theme.typography.h3.fontSize,
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
+  },
+  icon: {
+    fill: White,
+    width: '24px',
+    height: '24px'
   }
 }));
 
@@ -55,20 +64,37 @@ export default function CategoryList() {
   return (
     <List className={classes.list}>
       <ListItem button onClick={() => handleRouting('all')}>
-        <ListItemText inset primary="ALL" className={classes.itemBorder} />
+        <ListItemText disableTypography inset primary="All" className={classes.itemBorder} />
       </ListItem>
       <ListItem button onClick={() => handleRouting("men's%20clothing")}>
-        <ListItemText inset primary="MEN'S CLOTHING" className={classes.itemBorder} />
+        <ListItemText
+          disableTypography
+          inset
+          primary="Men's clothing"
+          className={classes.itemBorder}
+        />
       </ListItem>
       <ListItem button onClick={() => handleRouting("women's%20clothing")}>
-        <ListItemText inset primary="WOMEN'S CLOTHING" className={classes.itemBorder} />
+        <ListItemText
+          disableTypography
+          inset
+          primary="Women's clothing"
+          className={classes.itemBorder}
+        />
       </ListItem>
       <ListItem button onClick={() => handleRouting('jewelery')}>
-        <ListItemText inset primary="JEWELERY" className={classes.itemBorder} />
+        <ListItemText disableTypography inset primary="Jewelery" className={classes.itemBorder} />
       </ListItem>
-      <Button className={classes.button} variant="text" component={Link} to={'/register'}>
-        Account
-      </Button>
+      <Box>
+        <Button
+          className={classes.button}
+          variant="text"
+          component={Link}
+          to={'/register'}
+          endIcon={<AccountBoxOutlinedIcon className={classes.icon} />}>
+          Account
+        </Button>
+      </Box>
     </List>
   );
 }
