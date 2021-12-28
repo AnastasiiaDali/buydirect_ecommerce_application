@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
   accountContainer: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '80px 16px 0',
+    padding: '100px 16px 0',
+    minHeight: 'calc(100vh  - 197px)',
     maxWidth: '1000px',
     margin: '0 auto 10px',
     [theme.breakpoints.up('sm')]: {
