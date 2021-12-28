@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Typography } from '@material-ui/core';
 import { LightGreyBg } from 'theme';
 import { socialMediaData } from 'data/socialMediaData';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
@@ -48,17 +49,17 @@ export default function Footer() {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1} variant="body1">
+            <Typography xs={1} variant="body1" component={Link} to="/category/women's%20clothing">
               Women Clothes
             </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1} variant="body1">
+            <Typography xs={1} variant="body1" component={Link} to="/category/men's%20clothing">
               Men Clothes
             </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1} variant="body1">
+            <Typography xs={1} variant="body1" component={Link} to="/category/jewelery">
               Jewerely
             </Typography>
           </Grid>
@@ -68,12 +69,12 @@ export default function Footer() {
             <Typography xs={1}>ACCOUNT</Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1} variant="body1">
+            <Typography xs={1} variant="body1" component={Link} to="/register">
               Register
             </Typography>
           </Grid>
           <Grid item>
-            <Typography xs={1} variant="body1">
+            <Typography xs={1} variant="body1" component={Link} to="/login">
               Log In
             </Typography>
           </Grid>
@@ -88,10 +89,14 @@ export default function Footer() {
             <Typography>ABOUT US</Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body1">Our Story</Typography>
+            <Typography variant="body1" component={Link} to="/ourstory">
+              Our Story
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body1">FAQs</Typography>
+            <Typography variant="body1" component={Link} to="/faq">
+              FAQs
+            </Typography>
           </Grid>
         </Grid>
         <Grid className={classes.socialMedia} container item xs={12} md={3}>
