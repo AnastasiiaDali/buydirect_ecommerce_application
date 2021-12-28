@@ -36,7 +36,7 @@ export default function SpecialSale() {
         <Typography paragraph variant="h3" align="center">
           Take Advantage of the Black friday TODAY!
         </Typography>
-        <Typography variant="h4" align="justify">
+        <Typography paragraph variant="h4" align="justify">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
           ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
