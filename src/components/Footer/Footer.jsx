@@ -4,6 +4,8 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { LightGreyBg } from 'theme';
 import { socialMediaData } from 'data/socialMediaData';
 import { Link } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
@@ -21,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       maxWidth: 1280,
       margin: '0 auto'
+    },
+    [theme.breakpoints.down('md')]: {
+      margin: 0
     }
   },
   socialMedia: {
@@ -28,11 +33,16 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'flex',
       flexDirection: 'column'
+    },
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+      gridGap: '12px'
     }
   },
   gridItem: {
     display: 'flex',
-    gridGap: '10px'
+    flexWrap: 'nowrap',
+    gridGap: '12px'
   }
 }));
 
@@ -42,76 +52,89 @@ export default function Footer() {
   return (
     <Box className={classes.footerContainer}>
       <Grid container spacing={3} className={classes.footerContainerBox}>
-        <Grid container item xs={4} md={3} spacing={1} direction="column" alignItems="flex-start">
-          <Grid item>
-            <Typography xs={1} variant="body1">
-              CATEGORIES
-            </Typography>
+        {/* Categories */}
+        <Hidden smDown>
+          <Grid container item xs={4} md={3} spacing={1} direction="column" alignItems="flex-start">
+            <Grid item>
+              <Typography xs={1} variant="body1">
+                CATEGORIES
+              </Typography>
+              <Divider />
+            </Grid>
+            <Grid item>
+              <Typography xs={1} variant="body1" component={Link} to="/category/women's%20clothing">
+                Women Clothes
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography xs={1} variant="body1" component={Link} to="/category/men's%20clothing">
+                Men Clothes
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography xs={1} variant="body1" component={Link} to="/category/jewelery">
+                Jewerely
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Typography xs={1} variant="body1" component={Link} to="/category/women's%20clothing">
-              Women Clothes
-            </Typography>
+        </Hidden>
+        {/* Account */}
+        <Hidden smDown>
+          <Grid container item xs={4} md={3} spacing={1} direction="column" alignItems="flex-start">
+            <Grid item>
+              <Typography xs={1}>ACCOUNT</Typography>
+              <Divider />
+            </Grid>
+            <Grid item>
+              <Typography xs={1} variant="body1" component={Link} to="/register">
+                Register
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography xs={1} variant="body1" component={Link} to="/login">
+                Log In
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography xs={1} variant="body1">
+                Orders
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Typography xs={1} variant="body1" component={Link} to="/category/men's%20clothing">
-              Men Clothes
-            </Typography>
+        </Hidden>
+        {/* About us */}
+        <Hidden smDown>
+          <Grid container item xs={4} md={3} spacing={1} direction="column" alignItems="flex-start">
+            <Grid item>
+              <Typography>ABOUT US</Typography>
+              <Divider />
+            </Grid>
+            <Grid item>
+              <Typography variant="body1" component={Link} to="/ourstory">
+                Our Story
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body1" component={Link} to="/faq">
+                FAQs
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Typography xs={1} variant="body1" component={Link} to="/category/jewelery">
-              Jewerely
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid container item xs={4} md={3} spacing={1} direction="column" alignItems="flex-start">
-          <Grid item>
-            <Typography xs={1}>ACCOUNT</Typography>
-          </Grid>
-          <Grid item>
-            <Typography xs={1} variant="body1" component={Link} to="/register">
-              Register
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography xs={1} variant="body1" component={Link} to="/login">
-              Log In
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography xs={1} variant="body1">
-              Orders
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid container item xs={4} md={3} spacing={1} direction="column">
-          <Grid item>
-            <Typography>ABOUT US</Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body1" component={Link} to="/ourstory">
-              Our Story
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body1" component={Link} to="/faq">
-              FAQs
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid className={classes.socialMedia} container item xs={12} md={3}>
+        </Hidden>
+        {/* Social media */}
+        <Grid className={classes.socialMedia} container item xs={12} md={3} alignItems="flex-start">
           <Grid item>
             <Typography paragraph>SOCIAL MEDIA</Typography>
           </Grid>
           {socialMediaData.map((social) => {
             return (
-              <Grid item key={social.id} className={classes.gridItem}>
-                <a href={social.link} target="_blank" rel="noreferrer">
+              <Grid item key={social.id}>
+                <a href={social.link} target="_blank" rel="noreferrer" className={classes.gridItem}>
                   {social.icon}
+                  <Box display={{ xs: 'none', md: 'inline-flex' }}>
+                    <Typography variant="body1">{social.label}</Typography>
+                  </Box>
                 </a>
-                <Box display={{ xs: 'none', md: 'flex' }}>
-                  <Typography variant="body1">{social.label}</Typography>
-                </Box>
               </Grid>
             );
           })}
