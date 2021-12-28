@@ -11,7 +11,8 @@ const useStyles = makeStyles(() => ({
   root: {
     width: 300,
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    paddingTop: '30px'
   },
   closeOutlinedIcon: {
     height: '48px',
@@ -24,10 +25,6 @@ const useStyles = makeStyles(() => ({
   },
   itemBorder: {
     borderBottom: '1px solid grey'
-  },
-  menuItem: {
-    textAlign: 'center',
-    marginTop: '10px'
   },
   button: {
     position: 'fixed',
