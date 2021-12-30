@@ -9,7 +9,6 @@ import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
-    maxWidth: '100vw',
     padding: '20px 40px 0',
     backgroundColor: LightGreyBg,
     margin: '20px 0 0 0',

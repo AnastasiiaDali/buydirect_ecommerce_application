@@ -6,7 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import Header from 'components/Header/Header';
-import Footer from 'components/Footer/Footer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { store } from './store';
@@ -60,7 +59,6 @@ ReactDOM.render(
             <ScrollToTop />
             <Header />
             <App />
-            <Footer />
           </Provider>
         </BrowserRouter>
       </SnackbarProvider>

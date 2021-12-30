@@ -9,10 +9,16 @@ import RegisterPage from 'pages/RegisterPage';
 import AccountPage from 'pages/AccountPage';
 import FaqPage from 'pages/FaqPage';
 import OurStoryPage from 'pages/OurStoryPage';
+import Footer from 'components/Footer/Footer';
 
 function App() {
   return (
-    <div style={{ minHeight: 'calc(100vh - 280px)' }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/category/:id" element={<CategoryPage />} />
@@ -24,6 +30,9 @@ function App() {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/ourstory" element={<OurStoryPage />} />
       </Routes>
+      <div style={{ marginTop: 'auto' }}>
+        <Footer />
+      </div>
     </div>
   );
 }
