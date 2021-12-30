@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'scroll',
     maxHeight: 200
   },
+  noItemsFound: {
+    margin: '12px auto',
+    textAlign: 'center',
+    fontSize: theme.typography.body1
+  },
   searchLabel: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -109,9 +114,7 @@ export default function Search({ products }) {
               />
               <Box className={classes.searchResults}>
                 {isEmpty(filteredProducts) ? (
-                  <Typography paragrapg align="center" variant="body1">
-                    No products found
-                  </Typography>
+                  <Typography className={classes.noItemsFound}>No products found</Typography>
                 ) : (
                   filteredProducts?.map((product) => (
                     <Typography
