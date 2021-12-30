@@ -1,17 +1,14 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import Skeleton from '@material-ui/lab/Skeleton';
-import { Typography, Box, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Favorite from '@material-ui/icons/Favorite';
+import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { PrimaryBlue } from 'theme';
 import { useQuery } from 'react-query';
 import Breads from 'components/Breads/Breads';
 import { useDispatch } from 'react-redux';
-import { addToCart } from 'features/cart/cartSlice';
-import { Link } from 'react-router-dom';
+import { addToCart } from 'store/slices/cart/cartSlice';
 import CategorySlider from 'components/CategorySlider/CategorySlider';
+import ProductItem from 'components/ProductItem/ProductItem';
+import ProductItemsSkeleton from 'components/Skeletons/ProductItemsSkeleton';
 
 const useStyles = makeStyles((theme) => ({
   categoryContainer: {
@@ -37,58 +34,19 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '1280px',
     margin: '15px auto 10px',
     width: '100%'
-  },
-  productContainer: {
-    display: 'grid',
-    width: '47%',
-    maxWidth: '240px',
-    minWidth: '168px',
-    height: 'fit-content',
-    border: `1px solid ${PrimaryBlue}`,
-    borderRadius: '5px',
-    margin: '0 5px 5px',
-    backgroundColor: '#fff'
-  },
-  imageProduct: {
-    height: '190px',
-    margin: '8px',
-    display: 'block'
-  },
-  productTitle: {
-    display: '-webkit-box',
-    lineClamp: 2,
-    minHeight: '52px',
-    boxOrient: 'vertical',
-    overflow: 'hidden',
-    margin: '10px'
-  },
-  productPrice: {
-    padding: '2px',
-    margin: 'auto 10px 10px'
-  },
-  addBtnFav: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    margin: '8px',
-    [theme.breakpoints.down('xs')]: {
-      margin: '4px'
-    }
-  },
-  addButton: {
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '12px'
-    }
   }
 }));
 
-function CategoryPage() {
+export default function CategoryPage() {
   let { pathname } = useLocation();
   const classes = useStyles();
 
-  const { data: products, isLoading } = useQuery(['category', pathname], () =>
-    fetch(`https://fakestoreapi.com/products${pathname === '/category/all' ? '' : pathname}`).then(
-      (res) => res.json()
-    )
+  const { data: products, isLoading } = useQuery(
+    pathname === '/category/all' ? 'products' : ['category', pathname],
+    () =>
+      fetch(
+        `https://fakestoreapi.com/products${pathname === '/category/all' ? '' : pathname}`
+      ).then((res) => res.json())
   );
   const dispatch = useDispatch();
 
@@ -102,52 +60,10 @@ function CategoryPage() {
         <CategorySlider />
       </Box>
       <Breads category={pathname.replace('/category/', '')} />
-      {isLoading &&
-        Array.from(Array(10).keys()).map((i) => (
-          <Box className={classes.productContainer} key={i}>
-            <Skeleton variant="rect" className={classes.imageProduct} />
-            <Skeleton variant="text" className={classes.productTitle} />
-            <Box display="flex" gridGap="8px" justifyContent="center" alignItems="center">
-              <Skeleton variant="rect" width={160} height={30} />
-              <Skeleton variant="circle" width={40} height={40} />
-            </Box>
-          </Box>
-        ))}
-      {products?.map((product) => {
-        const { id, title, price, image } = product;
-        return (
-          <Box key={id} className={classes.productContainer}>
-            <Box component={Link} to={`/products/${id}`}>
-              <Box
-                className={classes.imageProduct}
-                style={{ background: `url(${image}) center center/contain no-repeat` }}
-              />
-              <Typography variant="h4" className={classes.productTitle}>
-                {title}
-              </Typography>
-              <Typography variant="h4" className={classes.productPrice}>
-                ${price}
-              </Typography>
-            </Box>
-            <div className={classes.addBtnFav}>
-              <Button
-                className={classes.addButton}
-                variant="contained"
-                onClick={() => handleAddToCart(product)}>
-                ADD TO CART
-              </Button>
-              <FormControlLabel
-                style={{ margin: '0 0 0 4px' }}
-                control={
-                  <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
-                }
-              />
-            </div>
-          </Box>
-        );
-      })}
+      <ProductItemsSkeleton isLoading={isLoading} />
+      {products?.map((product, index) => (
+        <ProductItem key={index} product={product} handleAddToCart={handleAddToCart} />
+      ))}
     </Box>
   );
 }
-
-export default CategoryPage;

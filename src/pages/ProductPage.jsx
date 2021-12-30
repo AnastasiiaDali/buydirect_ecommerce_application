@@ -10,7 +10,7 @@ import TopSellers from 'components/TopSellers/TopSellers';
 import { useQuery } from 'react-query';
 import Divider from '@material-ui/core/Divider';
 import { useDispatch } from 'react-redux';
-import { addToCart } from 'features/cart/cartSlice';
+import { addToCart } from 'store/slices/cart/cartSlice';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
@@ -79,7 +79,13 @@ const useStyles = makeStyles((theme) => ({
   },
   imageProduct: {
     margin: 'auto',
-    height: '100%'
+    height: '100%',
+    maxWidth: '220px',
+    maxHeight: '220px',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '360px',
+      maxHeight: '360px'
+    }
   },
 
   counterFavAdd: {
