@@ -16,7 +16,6 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    minHeight: 'calc(100vh  - 197px)',
     display: 'flex',
     flexDirection: 'column',
     padding: '80px 16px 0',
@@ -106,7 +105,8 @@ const useStyles = makeStyles((theme) => ({
   counter: {
     display: 'flex',
     gridGap: '20px',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontSize: theme.typography.body1.fontSize
   },
   divider: {
     [theme.breakpoints.up('md')]: {

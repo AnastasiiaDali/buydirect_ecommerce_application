@@ -1,20 +1,29 @@
+/**
+ * Counter component
+ *
+ * @param {object} product get the product
+ * @return {node} Returns Counter component for exact product
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { decreaseQuantity, addToCart } from 'store/slices/cart/cartSlice';
+
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { useDispatch } from 'react-redux';
-import { decreaseQuantity, addToCart } from 'features/cart/cartSlice';
-import { useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { White } from 'theme';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   counter: {
     display: 'flex',
     width: '60px',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    fontSize: theme.typography.body1.fontSize
   },
   icon: {
     fill: White

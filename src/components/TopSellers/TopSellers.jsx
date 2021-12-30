@@ -76,7 +76,7 @@ export default function TopSellers() {
 
   return (
     <Box className={classes.container}>
-      <Typography variant="h1" align="center" style={{ fontFamily: 'Montserrat' }}>
+      <Typography variant="h2" align="center" style={{ fontFamily: 'Montserrat' }}>
         TOP SELLERS
       </Typography>
 
