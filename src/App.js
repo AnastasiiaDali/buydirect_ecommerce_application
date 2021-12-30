@@ -15,9 +15,7 @@ function App() {
   return (
     <div
       style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column'
+        minHeight: '100vh'
       }}>
       <Routes>
         <Route path="/" element={<MainPage />} />
