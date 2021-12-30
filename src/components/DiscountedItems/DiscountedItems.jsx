@@ -81,7 +81,9 @@ export default function DiscountedItems() {
       </Typography>
       {/* {`${(price * 0.7).toFixed(2)}`} */}
       <Box className={classes.topSellersContainer}>
-        <ProductItemsSkeleton isLoading={isLoading} />
+        <Box display="flex" overflow="scroll">
+          <ProductItemsSkeleton isLoading={isLoading} />
+        </Box>
         <Slider {...settings}>
           {products?.map((product, index) => {
             return (
