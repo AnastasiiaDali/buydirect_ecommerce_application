@@ -8,7 +8,7 @@ import story3 from 'images/story3.jpeg';
 import category1 from 'images/category1.jpeg';
 import category2 from 'images/category2.jpeg';
 import category3 from 'images/category3.jpeg';
-import './assets/slick.css';
+import 'components/Slider/assets/slick.css';
 
 const useStyles = makeStyles(() => ({
   container: {

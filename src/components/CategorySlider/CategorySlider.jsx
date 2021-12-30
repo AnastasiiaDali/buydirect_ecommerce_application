@@ -1,32 +1,11 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 import Slider from 'react-slick';
+import 'components/Slider/assets/slick.css';
 import categorySlider1 from 'images/categorySlider1.jpeg';
 import categorySlider2 from 'images/categorySlider2.jpeg';
 import categorySlider3 from 'images/categorySlider3.jpeg';
-import './assets/slick.css';
-
-function SampleNextArrow(props) {
-  const { className, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ position: 'absolute', right: '20px', zIndex: 1 }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ position: 'absolute', left: '20px', zIndex: 1 }}
-      onClick={onClick}
-    />
-  );
-}
+import { SampleNextArrow, SamplePrevArrow } from 'components/SliderArrows/SliderArrows';
 
 export default function CategorySlider() {
   const settings = {
