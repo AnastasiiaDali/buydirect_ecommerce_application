@@ -77,7 +77,7 @@ export default function DiscountedItems() {
   return (
     <Box className={classes.container}>
       <Typography variant="h1" align="center" style={{ fontFamily: 'Montserrat' }}>
-        On Sale
+        ON SALE
       </Typography>
       {/* {`${(price * 0.7).toFixed(2)}`} */}
       <Box className={classes.topSellersContainer}>
