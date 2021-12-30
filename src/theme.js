@@ -145,8 +145,7 @@ const theme = createTheme({
         minWidth: 64,
         backgroundColor: PrimaryBlue,
         '&:hover': {
-          backgroundColor: PrimaryBlueHover,
-          color: TextDarkGrey
+          backgroundColor: PrimaryBlueHover
         }
       },
       outlined: {
