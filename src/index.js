@@ -9,7 +9,7 @@ import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { store } from './app/store';
+import { store } from './store';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -34,10 +34,10 @@ WebFont.load({
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      initialStale: true,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
-      retry: false
+      retry: false,
+      staleTime: Infinity
     }
   }
 });
