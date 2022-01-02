@@ -1,10 +1,14 @@
-import React from 'react';
-import blackFriday from '../../images/blackFriday.jpeg';
-import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+/**
+ * SpecialSale
+ * @description Special Sale banner on the home page with description
+ * @returns {node} SpecialSale component
+ */
 
-// import { Link } from 'react-router-dom';
+import React from 'react';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import blackFriday from '../../images/blackFriday.jpeg';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {

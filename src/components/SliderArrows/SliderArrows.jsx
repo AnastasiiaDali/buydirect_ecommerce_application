@@ -1,3 +1,9 @@
+/**
+ * SliderArrows
+ * @description styled arrors for slider components
+ * @returns {node} SliderArrows component
+ */
+
 import React from 'react';
 
 export function SampleNextArrow(props) {

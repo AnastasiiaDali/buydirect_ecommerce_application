@@ -1,12 +1,21 @@
+/**
+ * PaymentPage
+ * @description payment page infomation
+ * @returns {node} PaymentPage component
+ */
 import React from 'react';
-import { Typography, Box, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { clearCart } from 'store/slices/cart/cartSlice';
 
 import CreditCardOption from './CreditCardOption';
 import PaypalOption from './PaypalOption';
 import StripeOption from './StripeOption';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,6 +50,14 @@ export default function PaymentPage() {
   const cartTotaAmount = useSelector((state) => state.cart.cartTotaAmount);
   const classes = useStyles();
   const [selected, setSelected] = React.useState('paypal');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleCheckOut = () => {
+    dispatch(clearCart());
+    navigate('/successful');
+    location.reload();
+  };
 
   return (
     <Box className={classes.container}>
@@ -65,7 +82,7 @@ export default function PaymentPage() {
           <Typography variant="h4">Total:</Typography>
           <Typography variant="h4">${cartTotaAmount.toFixed(2)}</Typography>
         </Box>
-        <Button variant="contained" component={Link} to={'/successful'}>
+        <Button variant="contained" onClick={() => handleCheckOut()}>
           Complete payment
         </Button>
       </Box>

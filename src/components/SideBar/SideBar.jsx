@@ -1,11 +1,17 @@
+/**
+ * SideBar
+ * @description Sidebar drawer companent comtaining categories and account link
+ * @returns {node} SideBar component
+ */
+
 import React, { useState } from 'react';
+import CategoryList from 'components/CategoryList/CategoryList';
+import Box from '@material-ui/core/Box';
+import Drawer from '@material-ui/core/Drawer';
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
-import { Drawer } from '@material-ui/core';
-import CategoryList from 'components/CategoryList/CategoryList';
 
 const useStyles = makeStyles(() => ({
   root: {

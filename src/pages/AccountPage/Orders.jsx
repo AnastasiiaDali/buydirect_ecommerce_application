@@ -1,9 +1,17 @@
+/**
+ * Orders
+ * @description orders information card for Account page
+ * @returns {node} Orders component
+ */
+
 import React from 'react';
-import { Typography, Box, Button } from '@material-ui/core';
+import { ordersData } from 'data/ordersData';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
-import { ordersData } from 'data/ordersData';
 import { useStyles } from 'pages/AccountPage/styles';
 
 export default function Orders() {

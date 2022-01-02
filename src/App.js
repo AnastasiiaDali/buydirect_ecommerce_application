@@ -1,7 +1,7 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import MainPage from 'pages/MainPage';
 import CategoryPage from 'pages/CategoryPage';
-import { Routes, Route } from 'react-router-dom';
 import ProductPage from 'pages/ProductPage';
 import CartPage from 'pages/CartPage';
 import LoginPage from 'pages/LoginPage';
@@ -9,14 +9,13 @@ import RegisterPage from 'pages/RegisterPage';
 import AccountPage from 'pages/AccountPage';
 import FaqPage from 'pages/FaqPage';
 import OurStoryPage from 'pages/OurStoryPage';
-import Footer from 'components/Footer/Footer';
+import PaymentPage from 'pages/PaymentPage/index.jsx';
+import SuccessfulPayment from 'pages/SuccessfulPayment';
+import Box from '@material-ui/core/Box';
 
 function App() {
   return (
-    <div
-      style={{
-        minHeight: '100vh'
-      }}>
+    <Box minHeight={{ xs: 'calc(100vh - 190px)', md: 'calc(100vh - 370px)' }}>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/category/:id" element={<CategoryPage />} />
@@ -27,11 +26,10 @@ function App() {
         <Route path="/account" element={<AccountPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/ourstory" element={<OurStoryPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/successful" element={<SuccessfulPayment />} />
       </Routes>
-      <div style={{ marginTop: 'auto' }}>
-        <Footer />
-      </div>
-    </div>
+    </Box>
   );
 }
 

@@ -1,11 +1,18 @@
+/**
+ * FaqPage
+ * @description faq page, linked from footer
+ * @returns {node} FaqPage component
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Box } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { faqData } from 'data/faqData';
+import { makeStyles } from '@material-ui/core/styles';
 import { LightBlue, LightGreyBg } from 'theme';
 
 const useStyles = makeStyles(() => ({
@@ -13,7 +20,6 @@ const useStyles = makeStyles(() => ({
     padding: '80px 16px 0',
     overflow: 'hidden',
     maxWidth: '800px',
-    minHeight: 'calc(100vh  - 197px)',
     margin: '0 auto 10px'
   },
   accordionWrapper: {

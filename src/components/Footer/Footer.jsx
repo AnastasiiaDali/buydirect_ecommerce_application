@@ -1,11 +1,18 @@
+/**
+ * Footer
+ *  @return {node} Footer component
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, Typography } from '@material-ui/core';
-import { LightGreyBg } from 'theme';
-import { socialMediaData } from 'data/socialMediaData';
 import { Link } from 'react-router-dom';
+import { socialMediaData } from 'data/socialMediaData';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
+import { makeStyles } from '@material-ui/core/styles';
+import { LightGreyBg } from 'theme';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {

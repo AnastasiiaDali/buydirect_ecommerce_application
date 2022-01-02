@@ -1,12 +1,20 @@
+/**
+ * RegisterPage
+ * @description register
+ * @returns {node} RegisterPage component
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { useForm } from 'react-hook-form';
-import { Box, Button, Typography } from '@material-ui/core';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { TextDarkGrey, PrimaryBlue } from 'theme';
 import { useDispatch } from 'react-redux';
-import { addUser } from 'features/account/accountSlice';
+import { addUser } from 'store/slices/account/accountSlice';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { TextDarkGrey, PrimaryBlue } from 'theme';
 
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
@@ -16,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     padding: '100px 16px 0',
-    minHeight: 'calc(100vh  - 197px)',
     maxWidth: '1000px',
     margin: '0 auto 10px',
     [theme.breakpoints.up('sm')]: {

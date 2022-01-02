@@ -1,15 +1,21 @@
+/**
+ * AccountPage
+ * @description account page infomation
+ * @returns {node} AccountPage component
+ */
+
 import React from 'react';
-import { Typography, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import AccountInfo from './AccountInfo';
 import Orders from './Orders';
 import AddressBook from './AddressBook';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   accountContainer: {
     padding: '100px 16px 0',
     maxWidth: '1280px',
-    minHeight: 'calc(100vh  - 197px)',
     margin: '0 auto 10px',
     display: 'flex',
     gridGap: '12px',
@@ -24,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function CartPage() {
+export default function AccountPage() {
   const classes = useStyles();
 
   return (

@@ -1,19 +1,25 @@
+/**
+ * Header
+ * @description header
+ * @returns {node} Header component
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import SideBar from 'components/SideBar/SideBar';
+import Search from 'components/Search/Search';
+import CategoryList from 'components/CategoryList/CategoryList';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Link } from 'react-router-dom';
+import Badge from '@material-ui/core/Badge';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import SideBar from 'components/SideBar/SideBar';
-import Search from 'components/Search/Search';
 import IconButton from '@material-ui/core/IconButton';
-import { useQuery } from 'react-query';
-import { useSelector } from 'react-redux';
-import Badge from '@material-ui/core/Badge';
-import CategoryList from 'components/CategoryList/CategoryList';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   logo: {

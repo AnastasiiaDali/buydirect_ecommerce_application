@@ -1,6 +1,4 @@
 import { createTheme } from '@material-ui/core/styles';
-// import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-// const breakpoints = createBreakpoints({});
 
 export const PrimaryBlue = '#007399';
 export const PrimaryBlueHover = '#0099cc';
@@ -74,15 +72,15 @@ const theme = createTheme({
       lineHeight: 1.7,
       fontWeight: 300
     },
+    body2: {
+      fontSize: '0.75rem'
+    },
     subtitle1: {
       fontSize: '1rem',
       lineHeight: 1.7,
       fontWeight: 300,
       color: Red,
       textDecoration: 'line-through'
-    },
-    body2: {
-      fontSize: '0.75rem'
     },
     button: {
       fontWeight: 400,

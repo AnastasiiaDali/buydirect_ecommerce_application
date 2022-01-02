@@ -1,6 +1,5 @@
 /**
- * Counter component
- *
+ * Counter
  * @param {object} product get the product
  * @return {node} Returns Counter component for exact product
  */
@@ -9,12 +8,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { decreaseQuantity, addToCart } from 'store/slices/cart/cartSlice';
-
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import { makeStyles } from '@material-ui/core/styles';
 import { White } from 'theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +45,7 @@ export default function Counter({ product }) {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
+  console.log(product);
 
   return (
     <Box display="flex">
@@ -59,3 +59,20 @@ export default function Counter({ product }) {
     </Box>
   );
 }
+
+Counter.propTypes = {
+  product: PropTypes.exact({
+    name: PropTypes.string,
+    category: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.number,
+    image: PropTypes.string,
+    itemQuantity: PropTypes.number,
+    price: PropTypes.number,
+    rating: PropTypes.exact({
+      count: PropTypes.number,
+      rate: PropTypes.number
+    }),
+    title: PropTypes.string
+  })
+};

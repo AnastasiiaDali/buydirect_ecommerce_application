@@ -1,9 +1,17 @@
+/**
+ * Hero
+ * @description main banner o the top of home page
+ * @returns {node} Hero component
+ */
+
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import mainBanner from '../../images/mainBanner.jpeg';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Box, Button } from '@material-ui/core';
 import { TextDarkGrey } from 'theme';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   image: {

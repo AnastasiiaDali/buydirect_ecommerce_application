@@ -1,15 +1,19 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography } from '@material-ui/core';
-import OurStorySlider from 'components/OurStorySlider/OurStorySlider';
+/**
+ * OurStoryPage
+ * @description our story page, linked from footer
+ * @returns {node} OurStoryPage component
+ */
 
-// import { LightBlue, LightGreyBg } from 'theme';
+import React from 'react';
+import OurStorySlider from 'components/OurStorySlider/OurStorySlider';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   container: {
     padding: '80px 16px 0',
     maxWidth: '800px',
-    minHeight: 'calc(100vh  - 197px)',
     margin: '0 auto 10px'
   },
   text: {

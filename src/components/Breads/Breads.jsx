@@ -1,9 +1,19 @@
+/**
+ * Breads
+ * @description navigation map for categories and products
+ * @param {string} category name of the category
+ * @param {string} title name of the title
+ * @return {node} Breads component
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Box from '@material-ui/core/Box';
-import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import { PrimaryBlue } from 'theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,3 +55,8 @@ export default function Breads({ category, title }) {
     </Box>
   );
 }
+
+Breads.propTypes = {
+  category: PropTypes.string,
+  title: PropTypes.string
+};

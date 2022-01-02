@@ -1,10 +1,16 @@
+/**
+ * FeaturedCat
+ * @description 3 featured categories on the home page, banner with title
+ * @return {node} FeaturedCat component
+ */
+
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import { BlackBg, White } from 'theme';
-import { featuredCatData } from 'data/featuredCatData';
 import { Link } from 'react-router-dom';
+import { featuredCatData } from 'data/featuredCatData';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { BlackBg, White } from 'theme';
 
 const useStyles = makeStyles((theme) => ({
   imageBn: {

@@ -1,15 +1,21 @@
+/**
+ * DiscountedItems
+ * @description display on sale products category on the home page
+ * @return {node} Discounted Items component
+ */
+
 import React from 'react';
-import Slider from 'react-slick';
-import { SampleNextArrow, SamplePrevArrow } from 'components/SliderArrows/SliderArrows';
-import 'components/Slider/assets/slick.css';
-import Box from '@material-ui/core/Box';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { addToCart } from 'store/slices/cart/cartSlice';
+import Slider from 'react-slick';
+import 'components/Slider/assets/slick.css';
+import { SampleNextArrow, SamplePrevArrow } from 'components/SliderArrows/SliderArrows';
 import ProductItemsSkeleton from 'components/Skeletons/ProductItemsSkeleton';
 import ProductItem from 'components/ProductItem/ProductItem';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -79,7 +85,6 @@ export default function DiscountedItems() {
       <Typography variant="h2" align="center" style={{ fontFamily: 'Montserrat' }}>
         ON SALE
       </Typography>
-      {/* {`${(price * 0.7).toFixed(2)}`} */}
       <Box className={classes.topSellersContainer}>
         <Box display="flex" overflow="scroll">
           <ProductItemsSkeleton isLoading={isLoading} />

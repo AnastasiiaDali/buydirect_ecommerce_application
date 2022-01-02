@@ -1,16 +1,25 @@
+/**
+ * Search
+ * @description search on the header
+ * @param {array} products product that match search input
+ * @returns {node} Search component
+ */
+
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import isEmpty from 'helpers/isEmpty';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Popper from '@material-ui/core/Popper';
-import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
-import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
-import { White, TextDarkGrey } from 'theme';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import isEmpty from 'helpers/isEmpty';
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import { makeStyles } from '@material-ui/core/styles';
+import { White, TextDarkGrey } from 'theme';
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -137,3 +146,23 @@ export default function Search({ products }) {
     </>
   );
 }
+
+Search.propTypes = {
+  isLoading: PropTypes.bool,
+  products: PropTypes.arrayOf(
+    PropTypes.exact({
+      name: PropTypes.string,
+      category: PropTypes.string,
+      description: PropTypes.string,
+      id: PropTypes.number,
+      image: PropTypes.string,
+      itemQuantity: PropTypes.number,
+      price: PropTypes.number,
+      rating: PropTypes.exact({
+        count: PropTypes.number,
+        rate: PropTypes.number
+      }),
+      title: PropTypes.string
+    })
+  )
+};

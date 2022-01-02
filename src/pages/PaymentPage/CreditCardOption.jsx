@@ -1,5 +1,15 @@
+/**
+ * CreditCardOption
+ * @description Credit card for Payment page
+ * @param {function} handleChange function to choose payment method
+ * @param {boolean} selected used to indicate which card is chosen to cahnge style
+ * @returns {node} CreditCardOption component
+ */
+
 import React from 'react';
-import { Typography, Box } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import creditCard from 'images/creditCard.svg';
@@ -38,3 +48,8 @@ export default function CreditCardOption({ selected, handleChange }) {
     </Card>
   );
 }
+
+CreditCardOption.propTypes = {
+  handleChange: PropTypes.func,
+  selected: PropTypes.bool
+};

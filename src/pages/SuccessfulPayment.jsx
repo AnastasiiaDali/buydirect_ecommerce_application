@@ -1,8 +1,15 @@
+/**
+ * SuccesssfulPayment
+ * @description after payment has been completed leads to this page
+ * @returns {node} SuccesssfulPayment component
+ */
+
 import React from 'react';
-import { Typography, Box } from '@material-ui/core';
-import { PrimaryBlue } from 'theme';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
+import { PrimaryBlue } from 'theme';
 
 import successfulPayment from 'images/successfulPayment.png';
 

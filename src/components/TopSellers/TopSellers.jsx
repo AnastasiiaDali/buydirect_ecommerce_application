@@ -1,15 +1,21 @@
+/**
+ * TopSellers
+ * @description Top sellers category displayed on the home page and product page
+ * @returns {node} TopSellers component
+ */
+
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import Slider from 'react-slick';
-import { SampleNextArrow, SamplePrevArrow } from 'components/SliderArrows/SliderArrows';
-import 'components/Slider/assets/slick.css';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { addToCart } from 'store/slices/cart/cartSlice';
 import ProductItemsSkeleton from 'components/Skeletons/ProductItemsSkeleton';
 import ProductItem from 'components/ProductItem/ProductItem';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Slider from 'react-slick';
+import { SampleNextArrow, SamplePrevArrow } from 'components/SliderArrows/SliderArrows';
+import 'components/Slider/assets/slick.css';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,7 +64,7 @@ export default function TopSellers() {
         }
       },
       {
-        breakpoint: 960,
+        breakpoint: 840,
         settings: {
           slidesToScroll: 1,
           slidesToShow: 3

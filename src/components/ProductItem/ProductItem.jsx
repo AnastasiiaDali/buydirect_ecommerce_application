@@ -1,10 +1,24 @@
+/**
+ * ProductItem
+ * @description Product component for categories
+ * @param {object} product
+ * @param {function} handleAddToCart function that adds to the state
+ * @param {boolean} specialPrice if its tru display discounted price
+ * @returns {node} ProductItem component
+ */
+
 import React from 'react';
-import { Typography, Box, Button, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
 import { makeStyles } from '@material-ui/core/styles';
-
-import { Link } from 'react-router-dom';
 
 export const useStyles = makeStyles((theme) => ({
   productContainer: {
@@ -93,3 +107,22 @@ export default function ProductItem({ product, handleAddToCart, specialPrice }) 
     </Box>
   );
 }
+
+ProductItem.propTypes = {
+  product: PropTypes.exact({
+    name: PropTypes.string,
+    category: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.number,
+    image: PropTypes.string,
+    itemQuantity: PropTypes.number,
+    price: PropTypes.number,
+    rating: PropTypes.exact({
+      count: PropTypes.number,
+      rate: PropTypes.number
+    }),
+    title: PropTypes.string
+  }).isRequired,
+  handleAddToCart: PropTypes.func.isRequired,
+  specialPrice: PropTypes.bool
+};

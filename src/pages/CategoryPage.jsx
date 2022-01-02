@@ -1,20 +1,25 @@
+/**
+ * CategoryPage
+ * @description category
+ * @returns {node} CategoryPage component
+ */
+
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { useQuery } from 'react-query';
-import Breads from 'components/Breads/Breads';
 import { useDispatch } from 'react-redux';
 import { addToCart } from 'store/slices/cart/cartSlice';
+import { useLocation } from 'react-router-dom';
 import CategorySlider from 'components/CategorySlider/CategorySlider';
 import ProductItem from 'components/ProductItem/ProductItem';
 import ProductItemsSkeleton from 'components/Skeletons/ProductItemsSkeleton';
+import Box from '@material-ui/core/Box';
+import Breads from 'components/Breads/Breads';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   categoryContainer: {
     padding: '80px 16px 0',
     maxWidth: '1280px',
-    minHeight: 'calc(100vh  - 197px)',
     margin: '0 auto 10px',
     display: 'flex',
     flexDirection: 'row',
