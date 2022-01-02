@@ -52,22 +52,20 @@ export default function SideBar() {
   };
 
   return (
-    <>
-      <Box display={{ xs: 'block', md: 'none' }}>
-        <IconButton onClick={toggleSidebar} aria-label="open drawer">
-          <MenuIcon />
-        </IconButton>
-        <Drawer anchor="left" open={isSidebarOpen} onClose={toggleSidebar}>
-          <div
-            className={classes.root}
-            role="presentation"
-            onClick={toggleSidebar}
-            onKeyDown={toggleSidebar}>
-            <CloseOutlinedIcon onClick={toggleSidebar} className={classes.closeOutlinedIcon} />
-            <CategoryList />
-          </div>
-        </Drawer>
-      </Box>
-    </>
+    <Box display={{ xs: 'block', md: 'none' }}>
+      <IconButton onClick={toggleSidebar} aria-label="open drawer">
+        <MenuIcon />
+      </IconButton>
+      <Drawer anchor="left" open={isSidebarOpen} onClose={toggleSidebar}>
+        <div
+          className={classes.root}
+          role="presentation"
+          onClick={toggleSidebar}
+          onKeyDown={toggleSidebar}>
+          <CloseOutlinedIcon onClick={toggleSidebar} className={classes.closeOutlinedIcon} />
+          <CategoryList />
+        </div>
+      </Drawer>
+    </Box>
   );
 }

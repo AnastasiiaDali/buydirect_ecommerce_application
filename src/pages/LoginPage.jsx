@@ -150,7 +150,7 @@ export default function LoginPage() {
               className={classes.input}
               type="email"
               {...register('email')}
-              placeholder="Email"
+              placeholder="email@example.com"
             />
             <Typography color="error" variant="body2" paragraph>
               {errors.email?.message}
@@ -165,7 +165,7 @@ export default function LoginPage() {
               className={classes.input}
               type="password"
               {...register('password')}
-              placeholder="password"
+              placeholder="********"
             />
             <Typography color="error" variant="body2" paragraph>
               {errors.password?.message}

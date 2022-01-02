@@ -45,7 +45,6 @@ export default function Counter({ product }) {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
-  console.log(product);
 
   return (
     <Box display="flex">

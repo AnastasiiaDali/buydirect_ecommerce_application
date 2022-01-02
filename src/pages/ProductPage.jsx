@@ -208,7 +208,7 @@ export default function ProductPage() {
                         />
                       }
                       label="Add to Favorite"
-                    />{' '}
+                    />
                   </Box>
                 </Box>
               </Box>

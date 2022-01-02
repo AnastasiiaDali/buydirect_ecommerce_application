@@ -140,7 +140,7 @@ export default function RegisterPage() {
               className={classes.input}
               type="text"
               {...register('firstName')}
-              placeholder="First name"
+              placeholder="James"
             />
             <Typography color="error" variant="body2" paragraph>
               {errors.firstName?.message}
@@ -155,7 +155,7 @@ export default function RegisterPage() {
               className={classes.input}
               type="text"
               {...register('lastName')}
-              placeholder="Last name"
+              placeholder="Bond"
             />
             <Typography color="error" variant="body2" paragraph>
               {errors.lastName?.message}
@@ -170,7 +170,7 @@ export default function RegisterPage() {
               className={classes.input}
               type="email"
               {...register('email')}
-              placeholder="Email"
+              placeholder="email@example.com"
             />
             <Typography color="error" variant="body2" paragraph>
               {errors.email?.message}
@@ -185,7 +185,7 @@ export default function RegisterPage() {
               className={classes.input}
               type="password"
               {...register('password')}
-              placeholder="password"
+              placeholder="********"
             />
             <Typography color="error" variant="body2" paragraph>
               {errors.password?.message}
@@ -200,7 +200,7 @@ export default function RegisterPage() {
               className={classes.input}
               type="password"
               {...register('confirmPassword')}
-              placeholder="confirm password"
+              placeholder="********"
             />
             <Typography color="error" variant="body2" paragraph>
               {errors.confirmPassword?.message}
