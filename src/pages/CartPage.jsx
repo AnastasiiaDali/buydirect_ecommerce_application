@@ -1,10 +1,23 @@
+/**
+ * CartPage
+ * @description cart
+ * @returns {node} CartPage component
+ */
+
 import React from 'react';
-import Counter from 'components/Counter/Counter';
-import { Typography, Box, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from 'features/cart/cartSlice';
+import { removeFromCart } from 'store/slices/cart/cartSlice';
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import Counter from 'components/Counter/Counter';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+
 import emptyCart from 'images/emptyCart.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     padding: '80px 16px 0',
     maxWidth: '1000px',
+    minHeight: 'calc(100vh - 100px)',
     margin: '0 auto 10px',
     [theme.breakpoints.up('sm')]: {
       paddingTop: 100,
@@ -33,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   imageProductWrapper: {
     minWidth: '120px',
+    maxWidth: '120px',
     height: '120px',
     padding: '8px',
     borderRadius: '8px',
@@ -42,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
   },
   imageProduct: {
     margin: 'auto',
+    maxWidth: '100px',
+
     height: '100%'
   },
   emptyCartImg: {
@@ -53,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
   totals: {
     alignSelf: 'flex-end',
-    mt: 2
+    marginTop: '40px'
   },
   counterRemove: {
     display: 'flex',
@@ -77,6 +94,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CartPage() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const cartTotaAmount = useSelector((state) => state.cart.cartTotaAmount);
+  const isLoggedIn = useSelector((state) => state.account.isLoggedIn);
+  const { pathname } = useLocation();
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -117,6 +136,7 @@ export default function CartPage() {
                 </Box>
               );
             })}
+            <Divider flexItem />
           </Box>
           <Box className={classes.totals}>
             <Box display="flex" justifyContent="space-between">
@@ -127,7 +147,13 @@ export default function CartPage() {
               <Typography variant="h4">Total:</Typography>
               <Typography variant="h4">${cartTotaAmount.toFixed(2)}</Typography>
             </Box>
-            <Button variant="contained">PROCEED TO CHECK OUT</Button>
+            <Button
+              variant="contained"
+              component={Link}
+              to={isLoggedIn ? '/payment' : '/login'}
+              state={{ prevPath: pathname }}>
+              PROCEED TO CHECK OUT
+            </Button>
           </Box>
         </Box>
       ) : (

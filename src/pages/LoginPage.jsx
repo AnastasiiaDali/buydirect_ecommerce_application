@@ -1,15 +1,24 @@
+/**
+ * LoginPage
+ * @description log in
+ * @returns {node} LoginPage component
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import { Box, Button, Typography } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { TextDarkGrey, PrimaryBlue } from 'theme';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { userLogIn } from 'features/account/accountSlice';
+import { userLogIn } from 'store/slices/account/accountSlice';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { TextDarkGrey, PrimaryBlue } from 'theme';
 
 import * as yup from 'yup';
 
@@ -17,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
   accountContainer: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: 'calc(100vh  - 197px)',
     padding: '100px 16px 0',
     maxWidth: '1000px',
+    minHeight: 'calc(100vh - 210px)',
     margin: '0 auto 10px',
     [theme.breakpoints.up('sm')]: {
       paddingTop: 100,
@@ -97,6 +106,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const { state } = useLocation();
 
   const user = useSelector((state) => state.account.user);
 
@@ -107,7 +117,7 @@ export default function LoginPage() {
   const onSubmit = (data) => {
     if (data.email === user.email && data.password === user.password) {
       handleUserLogIn();
-      navigate('/account');
+      navigate(state?.prevPath ? state.prevPath : '/account');
     } else {
       enqueueSnackbar('Seems like you do not have an account yet, please go to register', {
         variant: 'info',
