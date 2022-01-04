@@ -9,9 +9,9 @@ import 'components/Slider/assets/slick.css';
 import Slider from 'react-slick';
 import Box from '@material-ui/core/Box';
 import { SampleNextArrow, SamplePrevArrow } from 'components/SliderArrows/SliderArrows';
-import categorySlider1 from 'images/categorySlider1.jpeg';
-import categorySlider2 from 'images/categorySlider2.jpeg';
-import categorySlider3 from 'images/categorySlider3.jpeg';
+import categorySlider1 from 'images/categorySlider1.webp';
+import categorySlider2 from 'images/categorySlider2.webp';
+import categorySlider3 from 'images/categorySlider3.webp';
 
 export default function CategorySlider() {
   const settings = {

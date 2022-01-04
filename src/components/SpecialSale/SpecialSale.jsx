@@ -7,7 +7,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import blackFriday from '../../images/blackFriday.jpeg';
+import blackFriday from '../../images/blackFriday.webp';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

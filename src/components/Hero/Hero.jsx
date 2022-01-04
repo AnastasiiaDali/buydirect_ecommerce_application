@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import mainBanner from '../../images/mainBanner.jpeg';
+import mainBanner from '../../images/mainBanner.webp';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextDarkGrey } from 'theme';
 
