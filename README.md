@@ -1,75 +1,43 @@
-# Getting Started with Create React App
+<div align="center">
+  <img src="./public/logo192.png"></img>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">BuyDirect - ecommerce web application </h1>
+<h3 align="justify">Fully fubctional e-commerse website with the following functions: </h3>
 
-## Available Scripts
+[![Website react-finder.netlify.app](https://img.shields.io/website-up-down-green-red/http/perso.crans.org.svg)](https://react-finder.netlify.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/AndreiZernov/react-finder/blob/master/LICENSE)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-In the project directory, you can run:
+This is BuyDirect Ecommerce Web Application, compatible with all devices.
 
-### `yarn start`
+<ul>
+<li>Register, LogIn functionality - using Redux Tootkit</li>
+<li>Check Out - immitate check out using Redux Tootkit</li>
+<li>Cart - fully fucntional cart with counter, total and other functionalitites</li>
+<li>Products data fetch from free API https://fakestoreapi.com/docs using React Query for simplier code and faster performance</li>
+<li>Cart - fully fucntional cart with counter, remove, total and other functionalitites</li>
+</ul>
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2 align="center">Technologies</h2>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project is using:
 
-### `yarn test`
+- [Create React App](https://create-react-app.dev/)
+- [Material UI](https://material-ui.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [React Query](https://react-query.tanstack.com/)
+- [React-hook-form](https://react-hook-form.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project is using data from https://fakestoreapi.com/docs
 
-### `yarn build`
+## Integration of the Create React App folder sctructure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# retail-store
-# retail-store
-# retail-store
-# retail-store
-# retail-store
+- `src` contains all our application files
+- `src/componets/` contains React components which are connected to the redux store and independent pages.
+- `src/pages/` contains full React pages including components from `src/componets/`
+- `src/store/` contains redux glabal state and reducers
+- `src/images/` contains all static image files
+- `src/helpers/` contains all help functions
+- `src/data/` contains all mocks for our data in application
