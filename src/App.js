@@ -27,7 +27,7 @@ function App() {
       <Header />
       <Box minHeight={{ xs: 'calc(100vh - 100px)', md: 'calc(100vh - 370px)' }}>
         <Routes>
-          <Route path="/buydirect_ecommerce_application" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/products/:id" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
