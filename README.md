@@ -3,7 +3,6 @@
 </div>
 
 <h1 align="center">BuyDirect - ecommerce web application </h1>
-<h3 align="justify">Fully fubctional e-commerse website with the following functions: </h3>
 
 [![Website react-finder.netlify.app](https://img.shields.io/website-up-down-green-red/http/perso.crans.org.svg)](https://react-finder.netlify.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/AndreiZernov/react-finder/blob/master/LICENSE)
@@ -11,13 +10,14 @@
 
 This is BuyDirect Ecommerce Web Application, compatible with all devices.
 
-<ul>
-<li>Register, LogIn functionality - using Redux Tootkit</li>
-<li>Check Out - immitate check out using Redux Tootkit</li>
-<li>Cart - fully fucntional cart with counter, total and other functionalitites</li>
-<li>Products data fetch from free API https://fakestoreapi.com/docs using React Query for simplier code and faster performance</li>
-<li>Cart - fully fucntional cart with counter, remove, total and other functionalitites</li>
-</ul>
+<h3 align="center">Fully fubctional e-commerse website with the following functionality: </h3>
+
+- Register, LogIn functionality - using Redux Tootkit
+- Check Out - immitate check out using Redux Tootkit
+- Cart - fully fucntional cart with counter, total and other functionalitites
+- Products data fetch from free API https://fakestoreapi.com/docs using React Query for simplier code and faster performance
+- Cart - fully fucntional cart with counter, remove, total and other functionalitites
+
 ---
 
 <h2 align="center">Technologies</h2>
