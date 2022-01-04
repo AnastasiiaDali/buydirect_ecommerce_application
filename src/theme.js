@@ -38,15 +38,9 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: [
-      '"Lato"',
-      '"Montserrat"',
-      '"Oswald"',
-      '"Roboto"',
-      '"Helvetica"',
-      '"Arial"',
-      'sans-serif'
-    ].join(','),
+    fontFamily: ['"Lato"', '"Montserrat"', '"Roboto"', '"Helvetica"', '"Arial"', 'sans-serif'].join(
+      ','
+    ),
     h1: {
       fontSize: '1.875rem',
       lineHeight: 1.2,
