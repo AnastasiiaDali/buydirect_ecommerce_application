@@ -1,5 +1,5 @@
 {
-  "name": "retail-store",
+  "name": "buydirect_ecommerce_application",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@mui/system": "^5.2.3",
     "@reduxjs/toolkit": "^1.7.1",
+    "gh-pages": "^3.2.3",
     "notistack": "^1.0.10",
     "prop-types": "^15.8.0",
     "react": "^17.0.2",
