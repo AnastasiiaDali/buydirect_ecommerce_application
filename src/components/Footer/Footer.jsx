@@ -135,7 +135,12 @@ export default function Footer() {
           {socialMediaData.map((social) => {
             return (
               <Grid item key={social.id}>
-                <a href={social.link} target="_blank" rel="noreferrer" className={classes.gridItem}>
+                <a
+                  aria-label="social media"
+                  rel="noreferrer"
+                  href={social.link}
+                  target="_blank"
+                  className={classes.gridItem}>
                   {social.icon}
                   <Box display={{ xs: 'none', md: 'inline-flex' }}>
                     <Typography variant="body1">{social.label}</Typography>

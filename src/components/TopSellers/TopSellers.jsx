@@ -90,7 +90,7 @@ export default function TopSellers() {
         <Box display="flex" overflow="scroll">
           <ProductItemsSkeleton isLoading={isLoading} />
         </Box>
-        <Slider {...settings}>
+        <Slider {...settings} accessibility>
           {products?.map((product, index) => {
             return <ProductItem key={index} product={product} handleAddToCart={handleAddToCart} />;
           })}

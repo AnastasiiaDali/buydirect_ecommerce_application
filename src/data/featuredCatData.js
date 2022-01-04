@@ -1,6 +1,6 @@
-import featuredCatMenPic from 'images/featuredCatMenPic.jpeg';
-import featuredCatWomenPic from 'images/featuredCatWomenPic.jpeg';
-import featuredCatJewerellyPic from 'images/featuredCatJewerellyPic.jpeg';
+import featuredCatMenPic from 'images/featuredCatMenPic.webp';
+import featuredCatWomenPic from 'images/featuredCatWomenPic.webp';
+import featuredCatJewerellyPic from 'images/featuredCatJewerellyPic.webp';
 
 export const featuredCatData = [
   {

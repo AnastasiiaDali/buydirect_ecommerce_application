@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     position: 'absolute',
     left: '50%',
-    transform: 'translateX(-50%)',
     fontFamily: 'Montserrat',
+    transform: 'translateX(-50%)',
     fontSize: theme.typography.h1.fontSize,
     [theme.breakpoints.up('md')]: {
       position: 'initial',

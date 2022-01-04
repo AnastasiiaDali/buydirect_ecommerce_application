@@ -93,7 +93,7 @@ export default function Search({ products }) {
     <>
       <ClickAwayListener onClickAway={handleClickAway}>
         <div style={{ display: 'initial' }}>
-          <IconButton onClick={handleClick}>
+          <IconButton aria-label="search" onClick={handleClick}>
             <SearchOutlinedIcon />
             <Typography variant="h4" className={classes.searchLabel}>
               Search

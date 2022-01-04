@@ -82,13 +82,19 @@ export default function ProductItem({ product, handleAddToCart, specialPrice }) 
           {title}
         </Typography>
         {specialPrice && (
-          <Typography variant="subtitle1" className={classes.productPrice}>
-            {`${(price * 0.7).toFixed(2)}`}
+          <Typography variant="subtitle1" component="p" className={classes.productPrice}>
+            ${price}
           </Typography>
         )}
-        <Typography variant="h4" className={classes.productPrice}>
-          ${price}
-        </Typography>
+        {specialPrice ? (
+          <Typography variant="h4" className={classes.productPrice}>
+            {`${(price * 0.7).toFixed(2)}`}
+          </Typography>
+        ) : (
+          <Typography variant="h4" className={classes.productPrice}>
+            ${price}
+          </Typography>
+        )}
       </Box>
       <div className={classes.addBtnFav}>
         <Button
@@ -98,9 +104,14 @@ export default function ProductItem({ product, handleAddToCart, specialPrice }) 
           ADD TO CART
         </Button>
         <FormControlLabel
+          aria-label="favorite"
           style={{ margin: '0 0 0 4px' }}
           control={
-            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} />
+            <Checkbox
+              aria-label="favorite"
+              icon={<FavoriteBorder />}
+              checkedIcon={<Favorite color="primary" />}
+            />
           }
         />
       </div>
