@@ -4,7 +4,7 @@
 
 <h1 align="center">BuyDirect - ecommerce web application </h1>
 
-[![Website https://buydirect.netlify.app/](https://img.shields.io/website-up-down-green-red/http/perso.crans.org.svg)](https://buydirect_ecommerce_application.netlify.app/)
+[![Website https://buydirect.netlify.app/](https://img.shields.io/website-up-down-green-red/http/perso.crans.org.svg)](https://buydirect.netlify.app/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a561e5b8-dcbb-4f1b-b39d-a73fe2cd913c/deploy-status)](https://app.netlify.com/sites/buydirect/deploys)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
