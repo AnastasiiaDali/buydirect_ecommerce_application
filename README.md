@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/logo192.png"></img>
+  <img src="./public/store.png"></img>
 </div>
 
 <h1 align="center">BuyDirect - ecommerce web application </h1>
@@ -10,7 +10,7 @@
 
 This is BuyDirect Ecommerce Web Application, compatible with all devices.
 
-<h3 align="center">Fully fubctional e-commerse website with the following functionality: </h3>
+<h3 align="center">Fully functional e-commerce website with the following features: </h3>
 
 - Register, LogIn functionality - using Redux Tootkit
 - Check Out - immitate check out using Redux Tootkit
