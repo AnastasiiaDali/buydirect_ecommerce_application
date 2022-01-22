@@ -56,7 +56,7 @@ export default function PaymentPage() {
   const handleCheckOut = () => {
     dispatch(clearCart());
     navigate('/successful');
-    location.reload();
+    // location.reload();
   };
 
   return (
