@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/store.png"></img>
+  <img width="60px" src="./public/store.png"></img>
 </div>
 
 <h1 align="center">BuyDirect - ecommerce web application </h1>
@@ -9,6 +9,9 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 This is BuyDirect Ecommerce Web Application, compatible with all devices.
+
+<p align="center">To launch this project, go to https://buydirect.netlify.app/</p>
+
 
 <h3 align="center">Fully functional e-commerce website with the following features: </h3>
 
