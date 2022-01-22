@@ -53,8 +53,8 @@ export default function PaymentPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleCheckOut = () => {
-    dispatch(clearCart());
+  const handleCheckOut = async () => {
+    await dispatch(clearCart());
     navigate('/successful');
     // location.reload();
   };
